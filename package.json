@@ -1,0 +1,67 @@
+{
+  "name": "@tawk.to/tawk-messenger-vue-3",
+  "version": "0.0.1",
+  "description": "Official Vue 3 plugin for Tawk messenger",
+  "keywords": [
+    "vuejs",
+    "vue",
+    "vue3",
+    "nuxt",
+    "vue-plugin",
+    "tawk",
+    "nuxt-plugin",
+    "tawkto",
+    "vue-tawk",
+    "vue3-tawk",
+    "nuxt-tawk"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tawk/tawk-messenger-vue-3.git",
+    "repository": "tawk/tawk-messenger-vue-2"
+  },
+  "homepage": "https://github.com/tawk/tawk-messenger-vue-3#readme",
+  "bugs": {
+    "url": "https://github.com/tawk/tawk-messenger-vue-3/issues",
+    "email": "support@tawk.to"
+  },
+  "license": "Apache-2.0",
+  "author": "Jerald Austero <jerald.austero@tawk.to> (https://www.tawk.to)",
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/tawk-messenger-vue-3.umd.js",
+  "module": "./dist/tawk-messenger-vue-3.es.js",
+  "exports": {
+    ".": {
+      "import": "./dist/tawk-messenger-vue-3.es.js",
+      "require": "./dist/tawk-messenger-vue-3.umd.js"
+    }
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview --port 5050",
+    "test:unit": "vitest --environment jsdom",
+    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore"
+  },
+  "dependencies": {
+    "vue": "^3.2.31"
+  },
+  "devDependencies": {
+    "@rushstack/eslint-patch": "^1.1.0",
+    "@vitejs/plugin-vue": "^2.3.1",
+    "@vue/eslint-config-prettier": "^7.0.0",
+    "@vue/test-utils": "^2.0.0-rc.18",
+    "eslint": "^8.5.0",
+    "eslint-plugin-vue": "^8.2.0",
+    "jsdom": "^19.0.0",
+    "prettier": "^2.5.1",
+    "vite": "^2.9.1",
+    "vitest": "^0.8.1"
+  },
+  "directories": {
+    "doc": "docs",
+    "test": "tests"
+  }
+}
