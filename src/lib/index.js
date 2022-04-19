@@ -1,6 +1,6 @@
 // Utilities
 import { loadScript } from '../utils/widget';
-import { isValidString, isEmittable } from '../utils/helper';
+import { isValidString } from '../utils/helper';
 
 class TawkMessenger {
 	constructor(app, options) {
@@ -11,7 +11,7 @@ class TawkMessenger {
 		if (!isValidString(options.widgetId)) {
 			return;
 		}
-		
+
 		this.app = app;
 		this.propertyId = options.propertyId;
 		this.widgetId = options.widgetId;
@@ -19,11 +19,7 @@ class TawkMessenger {
 		this.customStyle = options.customStyle;
 		this.basePath = options.basePath;
 
-		this.emit = app._component.emits;
-
 		this.load();
-
-		console.log(app);
 	}
 
 	load() {
@@ -58,16 +54,16 @@ class TawkMessenger {
 		/**
 		 * Map the APIs
 		 */
-		this.mapActions();
-		this.mapGetters();
-		this.mapListeners();
-		this.mapSetters();
+		this.provideActions();
+		this.provideGetters();
+		this.provideListeners();
+		this.provideSetters();
 	}
 
 	/**
 	 * API for calling an action on the widget
 	 */
-	mapActions() {
+	provideActions() {
 		this.app.provide('maximize', () => {
 			window.Tawk_API.maximize();
 		});
@@ -103,8 +99,8 @@ class TawkMessenger {
 
 	/**
 	 * API for returning a data
-	 */	
-	mapGetters() {
+	 */
+	provideGetters() {
 		this.app.provide('getWindowType', () => {
 			window.Tawk_API.getWindowType();
 		});
@@ -150,132 +146,132 @@ class TawkMessenger {
 	 * API for listening an event emitting
 	 * inside of the widget
 	 */
-	mapListeners() {
-		window.addEventListener('tawkLoad', () => {
-			if (isEmittable(this.app, 'load')) {
-				this.emit.load();
-			}
+	provideListeners() {
+		this.app.provide('onLoad', (event) => {
+			window.addEventListener('tawkLoad', () => {
+				event();
+			});
 		});
 
-		window.addEventListener('tawkStatusChange', (status) => {
-			if (isEmittable(this.app, 'statusChange')) {
-				this.emit.statusChange(status.detail);
-			}
+		this.app.provide('onStatusChange', (event) => {
+			window.addEventListener('tawkStatusChange', (status) => {
+				event(status.detail);
+			});
 		});
 
-		window.addEventListener('tawkBeforeLoad', () => {
-			if (isEmittable(this.app, 'beforeLoad')) {
-				this.emit.beforeLoad();
-			}
+		this.app.provide('onBeforeLoad', (event) => {
+			window.addEventListener('tawkBeforeLoad', () => {
+				event();
+			});
 		});
 
-		window.addEventListener('tawkChatMaximized', () => {
-			if (isEmittable(this.app, 'chatMaximized')) {
-				this.emit.chatMaximized();
-			}
+		this.app.provide('onChatMaximized', (event) => {
+			window.addEventListener('tawkChatMaximized', () => {
+				event();
+			});
 		});
 
-		window.addEventListener('tawkChatMinimized', () => {
-			if (isEmittable(this.app, 'chatMinimized')) {
-				this.emit.chatMinimized();
-			}
+		this.app.provide('onChatMinimized', (event) => {
+			window.addEventListener('tawkChatMinimized', () => {
+				event();
+			});
 		});
 
-		window.addEventListener('tawkChatHidden', () => {
-			if (isEmittable(this.app, 'chatHidden')) {
-				this.emit.chatHidden();
-			}
+		this.app.provide('onChatHidden', (event) => {
+			window.addEventListener('tawkChatHidden', () => {
+				event();
+			});
 		});
 
-		window.addEventListener('tawkChatStarted', () => {
-			if (isEmittable(this.app, 'chatStarted')) {
-				this.emit.chatStarted();
-			}
+		this.app.provide('onChatStarted', (event) => {
+			window.addEventListener('tawkChatStarted', () => {
+				event();
+			});
 		});
 
-		window.addEventListener('tawkChatEnded', () => {
-			if (isEmittable(this.app, 'chatEnded')) {
-				this.emit.chatEnded();
-			}
+		this.app.provide('onChatEnded', (event) => {
+			window.addEventListener('tawkChatEnded', () => {
+				event();
+			});
 		});
 
-		window.addEventListener('tawkPrechatSubmit', (data) => {
-			if (isEmittable(this.app, 'prechatSubmit')) {
-				this.emit.prechatSubmit(data.detail);
-			}
+		this.app.provide('onPrechatSubmit', (event) => {
+			window.addEventListener('tawkPrechatSubmit', (data) => {
+				event(data.detail);
+			});
 		});
 
-		window.addEventListener('tawkOfflineSubmit', (data) => {
-			if (isEmittable(this.app, 'offlineSubmit')) {
-				this.emit.offlineSubmit(data.detail);
-			}
-		});
-		
-		window.addEventListener('tawkChatMessageVisitor', (message) => {
-			if (isEmittable(this.app, 'chatMessageVisitor')) {
-				this.emit.chatMessageVisitor(message.detail);
-			}
+		this.app.provide('onOfflineSubmit', (event) => {
+			window.addEventListener('tawkOfflineSubmit', (data) => {
+				event(data.detail);
+			});
 		});
 
-		window.addEventListener('tawkChatMessageAgent', (message) => {
-			if (isEmittable(this.app, 'chatMessageAgent')) {
-				this.emit.chatMessageAgent(message.detail);
-			}
+		this.app.provide('onChatMessageVisitor', (event) => {
+			window.addEventListener('tawkChatMessageVisitor', (message) => {
+				event(message.detail);
+			});
 		});
 
-		window.addEventListener('tawkChatMessageSystem', (message) => {
-			if (isEmittable(this.app, 'chatMessageSystem')) {
-				this.emit.chatMessageSystem(message.detail);
-			}
+		this.app.provide('onChatMessageAgent', (event) => {
+			window.addEventListener('tawkChatMessageAgent', (message) => {
+				event(message.detail);
+			});
 		});
 
-		window.addEventListener('tawkAgentJoinChat', (data) => {
-			if (isEmittable(this.app, 'agentJoinChat')) {
-				this.emit.agentJoinChat(data.detail);
-			}
-		});
-		
-		window.addEventListener('tawkAgentLeaveChat', (data) => {
-			if (isEmittable(this.app, 'agentLeaveChat')) {
-				this.emit.agentLeaveChat(data.detail);
-			}
+		this.app.provide('onChatMessageSystem', (event) => {
+			window.addEventListener('tawkChatMessageSystem', (message) => {
+				event(message.detail);
+			});
 		});
 
-		window.addEventListener('tawkChatSatisfaction', (satisfaction) => {
-			if (isEmittable(this.app, 'chatSatisfaction')) {
-				this.emit.chatSatisfaction(satisfaction.detail);
-			}
-		});
-		
-		window.addEventListener('tawkVisitorNameChanged', (visitorName) => {
-			if (isEmittable(this.app, 'visitorNameChanged')) {
-				this.emit.visitorNameChanged(visitorName.detail);
-			}
+		this.app.provide('onAgentJoinChat', (event) => {
+			window.addEventListener('tawkAgentJoinChat', (data) => {
+				event(data.detail);
+			});
 		});
 
-		window.addEventListener('tawkFileUpload', (link) => {
-			if (isEmittable(this.app, 'fileUpload')) {
-				this.emit.fileUpload(link.detail);
-			}
+		this.app.provide('onAgentLeaveChat', (event) => {
+			window.addEventListener('tawkAgentLeaveChat', (data) => {
+				event(data.detail);
+			});
 		});
 
-		window.addEventListener('tawkTagsUpdated', (data) => {
-			if (isEmittable(this.app, 'tagsUpdated')) {
-				this.emit.tagsUpdated(data.detail);
-			}
+		this.app.provide('onChatSatisfaction', (event) => {
+			window.addEventListener('tawkChatSatisfaction', (satisfaction) => {
+				event(satisfaction.detail);
+			});
 		});
 
-		window.addEventListener('tawkUnreadCountChanged', (data) => {
-			if (isEmittable(this.app, 'unreadCountChanged')) {
-				this.emit.unreadCountChanged(data.detail);
-			}
+		this.app.provide('onVisitorNameChanged', (event) => {
+			window.addEventListener('tawkVisitorNameChanged', (visitorName) => {
+				event(visitorName.detail);
+			});
+		});
+
+		this.app.provide('onFileUpload', (event) => {
+			window.addEventListener('tawkFileUpload', (link) => {
+				event(link.detail);
+			});
+		});
+
+		this.app.provide('onTagsUpdated', (event) => {
+			window.addEventListener('tawkTagsUpdated', (data) => {
+				event(data.detail);
+			});
+		});
+
+		this.app.provide('onUnreadCountChanged', (event) => {
+			window.addEventListener('tawkUnreadCountChanged', (data) => {
+				event(data.detail);
+			});
 		});
 	}
 
 	/**
 	 * API for setting a data on the widget
 	 */
-	 mapSetters() {
+	provideSetters() {
 		this.app.provide('visitor', (data) => {
 			window.Tawk_API.visitor(data);
 		});
@@ -291,7 +287,7 @@ class TawkMessenger {
 		this.app.provide('addTags', (tags, callback) => {
 			window.Tawk_API.addTags(tags, callback);
 		});
-		
+
 		this.app.provide('removeTags', (tags, callback) => {
 			window.Tawk_API.removeTags(tags, callback);
 		});
