@@ -42,7 +42,7 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview --port 5050",
-    "test:unit": "vitest --environment jsdom",
+    "test:unit": "vitest",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore"
   },
   "dependencies": {
