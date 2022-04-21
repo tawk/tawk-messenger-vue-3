@@ -52,7 +52,7 @@ class TawkMessenger {
 		}
 
 		/**
-		 * Map the APIs
+		 * Provide the APIs
 		 */
 		this.provideActions();
 		this.provideGetters();

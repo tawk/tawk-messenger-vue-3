@@ -16,6 +16,6 @@ export default {
 			return;
 		}
 
-        new TawkMessenger(app, options);
+		new TawkMessenger(app, options);
 	}
 }
