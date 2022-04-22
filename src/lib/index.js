@@ -36,7 +36,7 @@ class TawkMessenger {
 		/**
 		 * Inject the Tawk script
 		 */
-		 loadScript({
+		loadScript({
 			propertyId : this.propertyId,
 			widgetId : this.widgetId,
 			embedId : this.embedId,
@@ -49,6 +49,10 @@ class TawkMessenger {
 	init() {
 		if (this.customStyle && typeof this.customStyle === 'object') {
 			window.Tawk_API.customStyle = this.customStyle;
+		}
+
+		if (typeof this.app !== 'object') {
+			return;
 		}
 
 		/**
@@ -117,7 +121,7 @@ class TawkMessenger {
 			window.Tawk_API.isChatMinimized();
 		});
 
-		this.app.provide('isCHatHidden', () => {
+		this.app.provide('isChatHidden', () => {
 			window.Tawk_API.isCHatHidden();
 		});
 
@@ -276,8 +280,8 @@ class TawkMessenger {
 			window.Tawk_API.visitor(data);
 		});
 
-		this.app.provide('setAttributs', (attribute, callback) => {
-			window.Tawk_API.setAttributs(attribute, callback);
+		this.app.provide('setAttributes', (attribute, callback) => {
+			window.Tawk_API.setAttributes(attribute, callback);
 		});
 
 		this.app.provide('addEvent', (event, metadata, callback) => {
