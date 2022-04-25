@@ -9,51 +9,55 @@ Use the JavaScript API to manipulate the chat widget displayed on your website.
 <br/>
 
 ## Table of contents
-- [onLoad](#onload)
-- [onStatusChange](#onstatuschange)
-- [onBeforeLoad](#onbeforeload)
-- [onChatMaximized](#onchatmaximized)
-- [onChatMinimized](#onchatminimized)
-- [onChatHidden](#onchathidden)
-- [onChatStarted](#onchatstarted)
-- [onChatEnded](#onchatended)
-- [onPrechatSubmit](#onprechatsubmit)
-- [onOfflineSubmit](#onofflinesubmit)
-- [onChatMessageVisitor](#onchatmessagevisitor)
-- [onChatMessageAgent](#onchatmessageagent)
-- [onChatMessageSystem](#onchatmessagesystem)
-- [onAgentJoinChat](#onagentjoinchat)
-- [onAgentLeaveChat](#onagentleavechat)
-- [onChatSatisfaction](#onchatsatisfaction)
-- [onVisitorNameChanged](#onvisitornamechanged)
-- [onFileUpload](#onfileupload)
-- [onTagsUpdated](#ontagsupdated)
-- [onUnreadCountChanged](#onunreadcountchanged)
-- [visitor](#visitor)
-- [maximize](#maximize)
-- [minimize](#minimize)
-- [toggle](#toggle)
-- [popup](#popup)
-- [getWindowType](#getwindowtype)
-- [showWidget](#showwidget)
-- [hideWidget](#hidewidget)
-- [toggleVisibility](#togglevisibility)
-- [getStatus](#getstatus)
-- [isChatMaximized](#ischatmaximized)
-- [isChatMinimized](#ischatminimized)
-- [isChatHidden](#ischathidden)
-- [isChatOngoing](#ischatongoing)
-- [isVisitorEngaged](#isvisitorengaged)
-- [onLoaded](#onloaded)
-- [onBeforeLoaded](#onbeforeloaded)
-- [widgetPosition](#widgetposition)
-- [endChat](#endchat)
-- [setAttributes](#setattributes)
-- [addEvent](#addevent)
-- [addTags](#addtags)
-- [removeTags](#removetags)
-- [secureMode](#securemode)
-- [customStyle](#customstyle)
+- [API Reference](#api-reference)
+  - [Table of contents](#table-of-contents)
+  - [onLoad](#onload)
+  - [onStatusChange](#onstatuschange)
+  - [onBeforeLoad](#onbeforeload)
+  - [onChatMaximized](#onchatmaximized)
+  - [onChatMinimized](#onchatminimized)
+  - [onChatHidden](#onchathidden)
+  - [onChatStarted](#onchatstarted)
+  - [onChatEnded](#onchatended)
+  - [onPrechatSubmit](#onprechatsubmit)
+  - [onOfflineSubmit](#onofflinesubmit)
+  - [onChatMessageVisitor](#onchatmessagevisitor)
+  - [onChatMessageAgent](#onchatmessageagent)
+  - [onChatMessageSystem](#onchatmessagesystem)
+  - [onAgentJoinChat](#onagentjoinchat)
+  - [onAgentLeaveChat](#onagentleavechat)
+  - [onChatSatisfaction](#onchatsatisfaction)
+  - [onVisitorNameChanged](#onvisitornamechanged)
+  - [onFileUpload](#onfileupload)
+  - [onTagsUpdated](#ontagsupdated)
+  - [onUnreadCountChanged](#onunreadcountchanged)
+  - [visitor](#visitor)
+  - [maximize](#maximize)
+  - [minimize](#minimize)
+  - [toggle](#toggle)
+  - [popup](#popup)
+  - [getWindowType](#getwindowtype)
+  - [showWidget](#showwidget)
+  - [hideWidget](#hidewidget)
+  - [toggleVisibility](#togglevisibility)
+  - [getStatus](#getstatus)
+  - [isChatMaximized](#ischatmaximized)
+  - [isChatMinimized](#ischatminimized)
+  - [isChatHidden](#ischathidden)
+  - [isChatOngoing](#ischatongoing)
+  - [isVisitorEngaged](#isvisitorengaged)
+  - [onLoaded](#onloaded)
+  - [onBeforeLoaded](#onbeforeloaded)
+  - [widgetPosition](#widgetposition)
+  - [endChat](#endchat)
+  - [setAttributes](#setattributes)
+  - [addEvent](#addevent)
+  - [addTags](#addtags)
+  - [removeTags](#removetags)
+  - [secureMode](#securemode)
+  - [customstyle](#customstyle)
+    - [zIndex](#zindex)
+    - [Visibility](#visibility)
 
 <br/>
 
@@ -551,15 +555,15 @@ export default {
 
 <br/>
 
-## fileUpload
+## onFileUpload
 Callback function invoked when a file is uploaded. The link to the uploaded file is passed to the function. This callback is not supported in pop out chat window.
 
 `Composition API`
 ```html
 <script setup>
-    const onFIleUpload = inject('onFIleUpload');
+    const onFileUpload = inject('onFileUpload');
 
-    onFIleUpload((link) => {
+    onFileUpload((link) => {
         // place your code here
     });
 </script>
@@ -568,10 +572,10 @@ Callback function invoked when a file is uploaded. The link to the uploaded file
 `Options API`
 ```js
 export default {
-    inject : ['onFIleUpload'],
+    inject : ['onFileUpload'],
 
     created() {
-        this.onFIleUpload((link) => {
+        this.onFileUpload((link) => {
             // place your code here
         });
     }
@@ -660,10 +664,10 @@ If the name and email will not be available on load time (eg single page app, aj
 `Options API`
 ```js
 export default {
-    inject : ['onChatHidden'],
+    inject : ['visitor'],
 
     created() {
-        this.onChatHidden({
+        this.visitor({
             name : 'Name',
             email : 'email@email.com'
         });
@@ -834,14 +838,29 @@ export default {
 ## showWidget
 Shows the chat widget.
 
+`Composition API`
+```html
+<script setup>
+    const showWidget = inject('showWidget');
+    const onLoad = inject('onLoad');
+
+    onLoad(() => {
+        showWidget();
+    });
+</script>
+```
+
+`Options API`
 ```js
-this.$tawkMessenger.showWidget();
+export default {
+    inject : ['showWidget', 'onLoad'],
 
-// Example
-
-this.$tawkMessenger.$on('load', () => {
-    this.$tawkMessenger.showWidget();
-});
+    created() {
+        this.onLoad(() => {
+            this.showWidget();
+        });
+    }
+}
 ```
 
 <br/>
@@ -849,14 +868,29 @@ this.$tawkMessenger.$on('load', () => {
 ## hideWidget
 Hide the chat widget.
 
+`Composition API`
+```html
+<script setup>
+    const hideWidget = inject('hideWidget');
+    const onLoad = inject('onLoad');
+
+    onLoad(() => {
+        hideWidget();
+    });
+</script>
+```
+
+`Options API`
 ```js
-this.$tawkMessenger.hideWidget();
+export default {
+    inject : ['hideWidget', 'onLoad'],
 
-// Example
-
-this.$tawkMessenger.$on('load', () => {
-    this.$tawkMessenger.hideWidget();
-});
+    created() {
+        this.onLoad(() => {
+            this.hideWidget();
+        });
+    }
+}
 ```
 
 <br/>
@@ -864,14 +898,29 @@ this.$tawkMessenger.$on('load', () => {
 ## toggleVisibility
 Hides or Shows the chat widget based on the current visibility state.
 
+`Composition API`
+```html
+<script setup>
+    const toggleVisibility = inject('toggleVisibility');
+    const onLoad = inject('onLoad');
+
+    onLoad(() => {
+        toggleVisibility();
+    });
+</script>
+```
+
+`Options API`
 ```js
-this.$tawkMessenger.toggleVisibility();
+export default {
+    inject : ['toggleVisibility', 'onLoad'],
 
-// Example
-
-this.$tawkMessenger.$on('load', () => {
-    this.$tawkMessenger.toggleVisibility();
-});
+    created() {
+        this.onLoad(() => {
+            this.toggleVisibility();
+        });
+    }
+}
 ```
 
 <br/>
@@ -879,22 +928,41 @@ this.$tawkMessenger.$on('load', () => {
 ## getStatus
 Returns the current page status (online, away or offline).
 
+`Composition API`
+```html
+<script setup>
+    const getStatus = inject('getStatus');
+    const onLoad = inject('onLoad');
+
+    onLoad(() => {
+        if (getStatus() === 'online') {
+            // do something for online
+        } else if (getStatus() === 'away') {
+            // do something for away
+        } else {
+            // do something for offline
+        }
+    });
+</script>
+```
+
+`Options API`
 ```js
-this.$tawkMessenger.getStatus();
+export default {
+    inject : ['getStatus', 'onLoad'],
 
-// Example
-
-this.$tawkMessenger.$on('load', () => {
-    const pageStatus = this.$tawkMessenger.getStatus();
-
-    if (pageStatus === 'online') {
-        // do something for online
-    } else if (pageStatus === 'away') {
-        // do something for away
-    } else {
-        // do something for offline
+    created() {
+        this.onLoad(() => {
+            if (this.getStatus() === 'online') {
+                // do something for online
+            } else if (this.getStatus() === 'away') {
+                // do something for away
+            } else {
+                // do something for offline
+            }
+        });
     }
-});
+}
 ```
 
 <br/>
@@ -902,16 +970,33 @@ this.$tawkMessenger.$on('load', () => {
 ## isChatMaximized
 Returns a boolean value (true or false) indicating whether the chat widget is maximized.
 
+`Composition API`
+```html
+<script setup>
+    const isChatMaximized = inject('isChatMaximized');
+    const onLoad = inject('onLoad');
+
+    onLoad(() => {
+        if (isChatMaximized()) {
+            // do something if it's maximized
+        }
+    });
+</script>
+```
+
+`Options API`
 ```js
-this.$tawkMessenger.isChatMaximized();
+export default {
+    inject : ['isChatMaximized', 'onLoad'],
 
-// Example
-
-this.$tawkMessenger.$on('load', () => {
-    if (this.$tawkMessenger.isChatMaximized()) {
-        // do something it it's maximized
+    created() {
+        this.onLoad(() => {
+            if (this.isChatMaximized()) {
+                // do something if it's maximized
+            }
+        });
     }
-});
+}
 ```
 
 <br/>
@@ -919,16 +1004,33 @@ this.$tawkMessenger.$on('load', () => {
 ## isChatMinimized
 Returns a boolean value (true or false) indicating whether the chat widget is minimized.
 
+`Composition API`
+```html
+<script setup>
+    const isChatMinimized = inject('isChatMinimized');
+    const onLoad = inject('onLoad');
+
+    onLoad(() => {
+        if (isChatMinimized()) {
+            // do something if it's minimized
+        }
+    });
+</script>
+```
+
+`Options API`
 ```js
-this.$tawkMessenger.isChatMinimized();
+export default {
+    inject : ['isChatMinimized', 'onLoad'],
 
-// Example
-
-this.$tawkMessenger.$on('load', () => {
-    if (this.$tawkMessenger.isChatMinimized()) {
-        // do something if it's minimized
+    created() {
+        this.onLoad(() => {
+            if(this.isChatMinimized()) {
+                // do something if it's minimized
+            }
+        });
     }
-});
+}
 ```
 
 <br/>
@@ -936,16 +1038,33 @@ this.$tawkMessenger.$on('load', () => {
 ## isChatHidden
 Returns a boolean value (true or false) indicating whether the chat widget is hidden.
 
+`Composition API`
+```html
+<script setup>
+    const isChatHidden = inject('isChatHidden');
+    const onLoad = inject('onLoad');
+
+    onLoad(() => {
+        if (isChatHidden()) {
+            // do something if chat widget is hidden
+        }
+    });
+</script>
+```
+
+`Options API`
 ```js
-this.$tawkMessenger.isChatHidden();
+export default {
+    inject : ['isChatHidden', 'onLoad'],
 
-// Example
-
-this.$tawkMessenger.$on('load', () => {
-    if (this.$tawkMessenger.isChatHidden()) {
-        // do something if chat widget is hidden
+    created() {
+        this.onLoad(() => {
+            if(this.isChatHidden()) {
+                // do something if chat widget is hidden
+            }
+        });
     }
-});
+}
 ```
 
 <br/>
@@ -953,16 +1072,33 @@ this.$tawkMessenger.$on('load', () => {
 ## isChatOngoing
 Returns a boolean value (true or false) indicating whether currently there is an ongoing chat.
 
+`Composition API`
+```html
+<script setup>
+    const isChatOngoing = inject('isChatOngoing');
+    const onLoad = inject('onLoad');
+
+    onLoad(() => {
+        if (isChatOngoing()) {
+            // do something if there's ongoing chat
+        }
+    });
+</script>
+```
+
+`Options API`
 ```js
-this.$tawkMessenger.isChatOngoing();
+export default {
+    inject : ['isChatOngoing', 'onLoad'],
 
-// Example
-
-this.$tawkMessenger.$on('load', () => {
-    if (this.$tawkMessenger.isChatOngoing()) {
-        // do something if there's ongoing chat
+    created() {
+        this.onLoad(() => {
+            if(this.isChatOngoing()) {
+                // do something if there's ongoing chat
+            }
+        });
     }
-});
+}
 ```
 
 <br/>
@@ -970,16 +1106,33 @@ this.$tawkMessenger.$on('load', () => {
 ## isVisitorEngaged
 Returns a boolean value (true or false) indicating whether the visitor is currently chatting or has requested a chat.
 
+`Composition API`
+```html
+<script setup>
+    const isVisitorEngaged = inject('isVisitorEngaged');
+    const onLoad = inject('onLoad');
+
+    onLoad(() => {
+        if (isVisitorEngaged()) {
+            // do something if visitor engaged in chat
+        }
+    });
+</script>
+```
+
+`Options API`
 ```js
-this.$tawkMessenger.isVisitorEngaged();
+export default {
+    inject : ['isVisitorEngaged', 'onLoad'],
 
-// Example
-
-this.$tawkMessenger.$on('load', () => {
-    if (this.$tawkMessenger.isVisitorEngaged()) {
-        // do something if visitor engaged in chat
+    created() {
+        this.onLoad(() => {
+            if(this.isVisitorEngaged()) {
+                // do something if visitor engaged in chat
+            }
+        });
     }
-});
+}
 ```
 
 <br/>
@@ -987,39 +1140,87 @@ this.$tawkMessenger.$on('load', () => {
 ## onLoaded
 Returns a boolean value (true or undefined) indicating when the plugin is ready.
 
-```js
-this.$tawkMessenger.onLoaded();
+`Composition API`
+```html
+<script setup>
+    const onLoaded = inject('onLoaded');
 
-// Example
-if (this.$tawkMessenger.onLoaded()) {
-    // do something when widget is ready
+    if (onLoaded()) {
+        // do something when widget is loaded
+    }
+</script>
+```
+
+`Options API`
+```js
+export default {
+    inject : ['onLoaded'],
+
+    mounted() {
+        if(this.onLoaded()) {
+            // do something when widget is loaded
+        }
+    }
 }
 ```
 
 ## onBeforeLoaded
 Returns a boolean value (true or undefined) indicating when plugin is initialize.
 
-```js
-this.$tawkMessenger.onBeforeLoaded();
+`Composition API`
+```html
+<script setup>
+    const onBeforeLoaded = inject('onBeforeLoaded');
 
-// Example
-if (this.$tawkMessenger.onBeforeLoaded()) {
-    // do something before onload
+    if (onBeforeLoaded()) {
+        // do something before onload
+    }
+</script>
+```
+
+`Options API`
+```js
+export default {
+    inject : ['onBeforeLoaded'],
+
+    created() {
+        if(this.onBeforeLoaded()) {
+            // do something before onload
+        }
+    }
 }
 ```
 
 ## widgetPosition
 Returns a string for current position of the widget.
 
-```js
-this.$tawkMessenger.widgetPosition();
+`Composition API`
+```html
+<script setup>
+    const widgetPosition = inject('widgetPosition');
+    const onLoad = inject('onLoad');
 
-// Example
-this.$tawkMessenger.$on('load', () => {
-    if (this.$tawkMessenger.widgetPosition() === 'br') {
-        // do something if the widget is at bottom right
+    onLoad(() => {
+        if (widgetPosition() === 'br') {
+            // do something if the widget is at bottom right
+        }
+    });
+</script>
+```
+
+`Options API`
+```js
+export default {
+    inject : ['widgetPosition', 'onLoad'],
+
+    created() {
+        this.onLoad(() => {
+            if(this.widgetPosition() === 'br') {
+                // do something if the widget is at bottom right
+            }
+        });
     }
-});
+}
 ```
 
 <br/>
@@ -1027,15 +1228,31 @@ this.$tawkMessenger.$on('load', () => {
 ## endChat
 Ends the current ongoing chat.
 
-```js
-this.$tawkMessenger.endChat();
+`Composition API`
+```html
+<script setup>
+    const endChat = inject('endChat');
+    const onLoad = inject('onLoad');
 
-// Example
-
-this.$tawkMessenger.$on('load', () => {
-    this.$tawkMessenger.endChat();
-});
+    onLoad(() => {
+        endChat();
+    });
+</script>
 ```
+
+`Options API`
+```js
+export default {
+    inject : ['endChat', 'onLoad'],
+
+    created() {
+        this.onLoad(() => {
+            this.endChat();
+        });
+    }
+}
+```
+
 
 <br/>
 
@@ -1066,31 +1283,41 @@ Error messages returned:
 1. CONTAINS_INVALID_KEY: Custom key is not alphanumeric or dash (keys will be lower case)
 1. CONTAINS_INVALID_VALUE: Custom value is empty or the total length is more than 255 characters
 
-```js
-this.$tawkMessenger.setAttributes(attributes, callback);
+`Composition API`
+```html
+<script setup>
+    const setAttributes = inject('setAttributes');
+    const onLoad = inject('onLoad');
 
-// Example
-
-this.$tawkMessenger.$on('load', () => {
-    this.$tawkMessenger.setAttributes({
+    onLoad(() => {
+        setAttributes({
             id : 'A1234',
-            store : 'Midvalley'
+            store : 'Midvalley',
+            hash : 'hash value' // Optional
         }, function(error) {
             // do something if error
         });
-});
+    });
+</script>
+```
 
-// Example for setting name and email
+`Options API`
+```js
+export default {
+    inject : ['setAttributes', 'onLoad'],
 
-this.$tawkMessenger.$on('load', () => {
-    this.$tawkMessenger.setAttributes({
-            name : 'Name',
-            email : 'email@email.com',
-            hash : 'hash value'
-        }, function(error) {
-            // do something if error
+    created() {
+        this.onLoad(() => {
+            this.setAttributes({
+                id : 'A1234',
+                store : 'Midvalley',
+                hash : 'hash value' // Optional
+            }, function(error) {
+                // do something if error
+            });
         });
-});
+    }
+}
 ```
 
 <br/>
@@ -1105,31 +1332,49 @@ The callback which is a function will be invoked to notify whether the save fail
 
 INVALID_EVENT_NAME, INVALID_ATTRIBUTES, ATTRIBUTE_LIMIT_EXCEEDED, CONTAINS_INVALID_KEY, CONTAINS_INVALID_VALUE, SESSION_EXPIRED, SERVER_ERROR
 
+`Composition API`
+```html
+<script setup>
+    const addEvent = inject('addEvent');
+    const onLoad = inject('onLoad');
+
+    onLoad(() => {
+        addEvent(
+            'requested-quotation',
+            {
+                skU : 'A0012',
+                name : 'Jeans',
+                price : '50'
+            },
+            function(error) {
+                // do something if error
+            }
+        );
+    });
+</script>
+```
+
+`Options API`
 ```js
-this.$tawkMessenger.addEvent(eventName, metaData, callback);
+export default {
+    inject : ['addEvent', 'onLoad'],
 
-// Example
-
-this.$tawkMessenger.$on('load', () => {
-    this.$tawkMessenger.addEvent(
-        'requested-quotation',
-        function(error) {
-            // do something if error
-        }
-    );
-
-    this.$tawkMessenger.addEvent(
-        'product-add-to-cart',
-        {
-            sku : 'A0012',
-            name : 'Jeans',
-            price : '50'
-        },
-        function(error) {
-            // do something if error
-        }
-    );
-});
+    created() {
+        this.onLoad(() => {
+            this.addEvent(
+                'requested-quotation',
+                {
+                    skU : 'A0012',
+                    name : 'Jeans',
+                    price : '50'
+                },
+                function(error) {
+                    // do something if error
+                }
+            );
+        });
+    }
+}
 ```
 
 <br/>
@@ -1145,22 +1390,39 @@ The callback, which is a function, will be invoked to notify whether the save fa
 
 INVALID_TAGS, TAG_LIMIT_EXCEEDED, VERSION_CONFLICT, SESSION_EXPIRED, SERVER_ERROR
 
-```js
-$tawkMessengerVue.addTags(tags, callback);
+`Composition API`
+```html
+<script setup>
+    const addTags = inject('addTags');
+    const onLoad = inject('onLoad');
 
-// Example
-
-this.$tawkMessenger.$on('load', () => {
-    this.$tawkMessenger.addTags(
-        [
+    onLoad(() => {
+        addTags([
             'hello',
             'world'
-        ],
-        function(error) {
+        ], function(error) {
             // do something if error
-        }
-    );
-});
+        });
+    });
+</script>
+```
+
+`Options API`
+```js
+export default {
+    inject : ['addTags', 'onLoad'],
+
+    created() {
+        this.onLoad(() => {
+            this.addTags([
+                'hello',
+                'world'
+            ], function(error) {
+                // do something if error
+            });
+        });
+    }
+}
 ```
 
 <br/>
@@ -1175,22 +1437,39 @@ The callback, which is a function, will be invoked to notify whether the save fa
 
 INVALID_TAGS, TAG_LIMIT_EXCEEDED, SESSION_EXPIRED, SERVER_ERROR
 
-```js
-$tawkMessengerVue.removeTags(tags, callback);
+`Composition API`
+```html
+<script setup>
+    const removeTags = inject('removeTags');
+    const onLoad = inject('onLoad');
 
-// Example
-
-this.$tawkMessenger.$on('load', () => {
-    this.$tawkMessenger.removeTags(
-        [
+    onLoad(() => {
+        removeTags([
             'hello',
             'world'
-        ],
-        function (error) {
+        ], function(error) {
             // do something if error
-        }
-    );
-});
+        });
+    });
+</script>
+```
+
+`Options API`
+```js
+export default {
+    inject : ['removeTags', 'onLoad'],
+
+    created() {
+        this.onLoad(() => {
+            this.removeTags([
+                'hello',
+                'world'
+            ], function(error) {
+                // do something if error
+            });
+        });
+    }
+}
 ```
 
 <br/>
@@ -1204,12 +1483,32 @@ The hash is server side generated HMAC using SHA256, the user’s email and your
 
 You can get your API key from **Admin>Property Settings**.
 
+`Composition API`
+```html
+<script setup>
+    const visitor = inject('visitor');
+
+    visitor({
+        name : 'Name',
+        email : 'email@email.com',
+        hash : '<calculate-hash>'
+    });
+</script>
+```
+
+`Options API`
 ```js
-this.$tawkMessenger.visitor({
-    name : 'Name',
-    email : 'email@email.com',
-    hash : '<calculate-hash>'
-})
+export default {
+    inject : ['visitor'],
+
+    created() {
+        this.visitor({
+            name : 'Name',
+            email : 'email@email.com',
+            hash : '<calculate-hash>'
+        });
+    }
+}
 ```
 
 <br/>
@@ -1220,7 +1519,7 @@ Object used to update the widget styling. Currently only supports zIndex style. 
 ### zIndex
 ```js
 // ZIndex
-Vue.use(TawkMessengerVue, {
+app.use(TawkMessengerVue, {
     customStyle : {
         zIndex : Integer | String
     }
@@ -1228,19 +1527,19 @@ Vue.use(TawkMessengerVue, {
 
 // Example
 
-Vue.use(TawkMessengerVue, {
+app.use(TawkMessengerVue, {
     customStyle : {
         zIndex : 1000
     }
 });
 
-Vue.use(TawkMessengerVue, {
+app.use(TawkMessengerVue, {
     customStyle : {
         zIndex : '1000'
     }
 });
 
-Vue.use(TawkMessengerVue, {
+app.use(TawkMessengerVue, {
     customStyle : {
         zIndex : '1000 !important'
     }
@@ -1252,7 +1551,7 @@ Vue.use(TawkMessengerVue, {
 ### Visibility
 ```js
 // ZIndex
-Vue.use(TawkMessengerVue, {
+app.use(TawkMessengerVue, {
     customStyle : {
         visibility : {
             dekstop : {
@@ -1272,7 +1571,7 @@ Vue.use(TawkMessengerVue, {
 
 // Example
 
-Vue.use(TawkMessengerVue, {
+app.use(TawkMessengerVue, {
     customStyle : {
         visibility : {
             dekstop : {
