@@ -81,7 +81,7 @@ pop out chat window.
 export default {
     inject : ['onLoad'],
 
-    created() {
+    mounted() {
         this.onLoad(() => {
             // place your code here
         });
@@ -110,7 +110,7 @@ Callback function invoked when the page status changes. The function will receiv
 export default {
     inject : ['onStatusChange'],
 
-    created() {
+    mounted() {
         this.onStatusChange((status) => {
             // place your code here
         });
@@ -139,7 +139,7 @@ Callback function invoked right when Tawk_API is ready to be used and before the
 export default {
     inject : ['onBeforeLoad'],
 
-    created() {
+    mounted() {
         this.onBeforeLoad(() => {
             // place your code here
         });
@@ -168,7 +168,7 @@ Callback function invoked when the widget is maximized. This callback is not sup
 export default {
     inject : ['onChatMaximized'],
 
-    created() {
+    mounted() {
         this.onChatMaximized(() => {
             // place your code here
         });
@@ -197,7 +197,7 @@ Callback function invoked when the widget is minimized. This callback is not sup
 export default {
     inject : ['onChatMinimized'],
 
-    created() {
+    mounted() {
         this.onChatMinimized(() => {
             // place your code here
         });
@@ -226,7 +226,7 @@ Callback function invoked when the widget is hidden. This callback is not suppor
 export default {
     inject : ['onChatHidden'],
 
-    created() {
+    mounted() {
         this.onChatHidden(() => {
             // place your code here
         });
@@ -255,7 +255,7 @@ Callback function invoked when the widget is started.
 export default {
     inject : ['onChatStarted'],
 
-    created() {
+    mounted() {
         this.onChatStarted(() => {
             // place your code here
         });
@@ -284,7 +284,7 @@ Callback function invoked when the widget is ended. This callback is not support
 export default {
     inject : ['onChatEnded'],
 
-    created() {
+    mounted() {
         this.onChatEnded(() => {
             // place your code here
         });
@@ -313,7 +313,7 @@ Callback function invoked when the Pre-Chat Form is submitted. The submitted for
 export default {
     inject : ['onPrechatSubmit'],
 
-    created() {
+    mounted() {
         this.onPrechatSubmit((data) => {
             // place your code here
         });
@@ -342,7 +342,7 @@ Callback function invoked when the Offline form is submitted. The submitted form
 export default {
     inject : ['onOfflineSubmit'],
 
-    created() {
+    mounted() {
         this.onOfflineSubmit((data => {
             // place your code here
         });
@@ -371,7 +371,7 @@ Callback function invoked when message is sent by the visitor. The message is pa
 export default {
     inject : ['onChatMessageVisitor'],
 
-    created() {
+    mounted() {
         this.onChatMessageVisitor((message) => {
             // place your code here
         });
@@ -400,7 +400,7 @@ Callback function invoked when message is sent by the agent. The message is pass
 export default {
     inject : ['onChatMessageeAgent'],
 
-    created() {
+    mounted() {
         this.onChatMessageeAgent((message) => {
             // place your code here
         });
@@ -429,7 +429,7 @@ Callback function invoked when message is sent by the system. The message is pas
 export default {
     inject : ['onChatMessageSystem'],
 
-    created() {
+    mounted() {
         this.onChatMessageSystem((message) => {
             // place your code here
         });
@@ -458,7 +458,7 @@ Callback function invoked when an agent joins the chat. The data is passed to th
 export default {
     inject : ['onAgentJoinChat'],
 
-    created() {
+    mounted() {
         this.onAgentJoinChat((data) => {
             // place your code here
         });
@@ -487,7 +487,7 @@ Callback function invoked when an agent leaves the chat. The data is passed to t
 export default {
     inject : ['onAgentLeaveChat'],
 
-    created() {
+    mounted() {
         this.onAgentLeaveChat((data) => {
             // place your code here
         });
@@ -516,7 +516,7 @@ Callback function invoked when an agent leaves the chat. The satisfaction is pas
 export default {
     inject : ['onChatSatisfaction'],
 
-    created() {
+    mounted() {
         this.onChatSatisfaction((satisfaction) => {
             // place your code here
         });
@@ -545,7 +545,7 @@ Callback function invoked when the visitor manually changes his name. The visito
 export default {
     inject : ['onVisitorNameChanged'],
 
-    created() {
+    mounted() {
         this.onVisitorNameChanged((visitorName) => {
             // place your code here
         });
@@ -574,7 +574,7 @@ Callback function invoked when a file is uploaded. The link to the uploaded file
 export default {
     inject : ['onFileUpload'],
 
-    created() {
+    mounted() {
         this.onFileUpload((link) => {
             // place your code here
         });
@@ -603,7 +603,7 @@ Callback function invoked when a tag is updated.
 export default {
     inject : ['onTagsUpdated'],
 
-    created() {
+    mounted() {
         this.onTagsUpdated((data) => {
             // place your code here
         });
@@ -632,7 +632,7 @@ Callback function returns count of unread messages.
 export default {
     inject : ['onUnreadCountChanged'],
 
-    created() {
+    mounted() {
         this.onUnreadCountChanged((count) => {
             // place your code here
         });
@@ -666,7 +666,7 @@ If the name and email will not be available on load time (eg single page app, aj
 export default {
     inject : ['visitor'],
 
-    created() {
+    mounted() {
         this.visitor({
             name : 'Name',
             email : 'email@email.com'
@@ -697,7 +697,7 @@ Maximizes the chat widget.
 export default {
     inject : ['maximize', 'onLoad'],
 
-    created() {
+    mounted() {
         this.onLoad(() => {
             this.maximize();
         });
@@ -727,7 +727,7 @@ Minimizes the chat widget.
 export default {
     inject : ['minimize', 'onLoad'],
 
-    created() {
+    mounted() {
         this.onLoad(() => {
             this.minimize();
         });
@@ -757,7 +757,7 @@ Minimizes or Maximizes the chat widget based on the current state.
 export default {
     inject : ['toggle', 'onLoad'],
 
-    created() {
+    mounted() {
         this.onLoad(() => {
             this.toggle();
         });
@@ -787,7 +787,7 @@ Opens the chat widget as a pop out.
 export default {
     inject : ['popup', 'onLoad'],
 
-    created() {
+    mounted() {
         this.onLoad(() => {
             this.popup();
         });
@@ -821,7 +821,7 @@ Returns the current widget type whether it’s inline or embed.
 export default {
     inject : ['getWindowType', 'onLoad'],
 
-    created() {
+    mounted() {
         this.onLoad(() => {
             if (this.getWindowType() === 'inline') {
                 // do something if it's inline
@@ -855,7 +855,7 @@ Shows the chat widget.
 export default {
     inject : ['showWidget', 'onLoad'],
 
-    created() {
+    mounted() {
         this.onLoad(() => {
             this.showWidget();
         });
@@ -885,7 +885,7 @@ Hide the chat widget.
 export default {
     inject : ['hideWidget', 'onLoad'],
 
-    created() {
+    mounted() {
         this.onLoad(() => {
             this.hideWidget();
         });
@@ -915,7 +915,7 @@ Hides or Shows the chat widget based on the current visibility state.
 export default {
     inject : ['toggleVisibility', 'onLoad'],
 
-    created() {
+    mounted() {
         this.onLoad(() => {
             this.toggleVisibility();
         });
@@ -951,7 +951,7 @@ Returns the current page status (online, away or offline).
 export default {
     inject : ['getStatus', 'onLoad'],
 
-    created() {
+    mounted() {
         this.onLoad(() => {
             if (this.getStatus() === 'online') {
                 // do something for online
@@ -989,7 +989,7 @@ Returns a boolean value (true or false) indicating whether the chat widget is ma
 export default {
     inject : ['isChatMaximized', 'onLoad'],
 
-    created() {
+    mounted() {
         this.onLoad(() => {
             if (this.isChatMaximized()) {
                 // do something if it's maximized
@@ -1023,7 +1023,7 @@ Returns a boolean value (true or false) indicating whether the chat widget is mi
 export default {
     inject : ['isChatMinimized', 'onLoad'],
 
-    created() {
+    mounted() {
         this.onLoad(() => {
             if(this.isChatMinimized()) {
                 // do something if it's minimized
@@ -1057,7 +1057,7 @@ Returns a boolean value (true or false) indicating whether the chat widget is hi
 export default {
     inject : ['isChatHidden', 'onLoad'],
 
-    created() {
+    mounted() {
         this.onLoad(() => {
             if(this.isChatHidden()) {
                 // do something if chat widget is hidden
@@ -1091,7 +1091,7 @@ Returns a boolean value (true or false) indicating whether currently there is an
 export default {
     inject : ['isChatOngoing', 'onLoad'],
 
-    created() {
+    mounted() {
         this.onLoad(() => {
             if(this.isChatOngoing()) {
                 // do something if there's ongoing chat
@@ -1125,7 +1125,7 @@ Returns a boolean value (true or false) indicating whether the visitor is curren
 export default {
     inject : ['isVisitorEngaged', 'onLoad'],
 
-    created() {
+    mounted() {
         this.onLoad(() => {
             if(this.isVisitorEngaged()) {
                 // do something if visitor engaged in chat
@@ -1183,7 +1183,7 @@ Returns a boolean value (true or undefined) indicating when plugin is initialize
 export default {
     inject : ['onBeforeLoaded'],
 
-    created() {
+    mounted() {
         if(this.onBeforeLoaded()) {
             // do something before onload
         }
@@ -1213,7 +1213,7 @@ Returns a string for current position of the widget.
 export default {
     inject : ['widgetPosition', 'onLoad'],
 
-    created() {
+    mounted() {
         this.onLoad(() => {
             if(this.widgetPosition() === 'br') {
                 // do something if the widget is at bottom right
@@ -1245,7 +1245,7 @@ Ends the current ongoing chat.
 export default {
     inject : ['endChat', 'onLoad'],
 
-    created() {
+    mounted() {
         this.onLoad(() => {
             this.endChat();
         });
@@ -1306,7 +1306,7 @@ Error messages returned:
 export default {
     inject : ['setAttributes', 'onLoad'],
 
-    created() {
+    mounted() {
         this.onLoad(() => {
             this.setAttributes({
                 id : 'A1234',
@@ -1359,7 +1359,7 @@ INVALID_EVENT_NAME, INVALID_ATTRIBUTES, ATTRIBUTE_LIMIT_EXCEEDED, CONTAINS_INVAL
 export default {
     inject : ['addEvent', 'onLoad'],
 
-    created() {
+    mounted() {
         this.onLoad(() => {
             this.addEvent(
                 'requested-quotation',
@@ -1412,7 +1412,7 @@ INVALID_TAGS, TAG_LIMIT_EXCEEDED, VERSION_CONFLICT, SESSION_EXPIRED, SERVER_ERRO
 export default {
     inject : ['addTags', 'onLoad'],
 
-    created() {
+    mounted() {
         this.onLoad(() => {
             this.addTags([
                 'hello',
@@ -1459,7 +1459,7 @@ INVALID_TAGS, TAG_LIMIT_EXCEEDED, SESSION_EXPIRED, SERVER_ERROR
 export default {
     inject : ['removeTags', 'onLoad'],
 
-    created() {
+    mounted() {
         this.onLoad(() => {
             this.removeTags([
                 'hello',
@@ -1501,7 +1501,7 @@ You can get your API key from **Admin>Property Settings**.
 export default {
     inject : ['visitor'],
 
-    created() {
+    mounted() {
         this.visitor({
             name : 'Name',
             email : 'email@email.com',
