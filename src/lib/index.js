@@ -106,43 +106,43 @@ class TawkMessenger {
 	 */
 	provideGetters() {
 		this.app.provide('getWindowType', () => {
-			window.Tawk_API.getWindowType();
+			return window.Tawk_API.getWindowType();
 		});
 
 		this.app.provide('getStatus', () => {
-			window.Tawk_API.getStatus();
+			return window.Tawk_API.getStatus();
 		});
 
 		this.app.provide('isChatMaximized', () => {
-			window.Tawk_API.isChatMaximized();
+			return window.Tawk_API.isChatMaximized();
 		});
 
 		this.app.provide('isChatMinimized', () => {
-			window.Tawk_API.isChatMinimized();
+			return window.Tawk_API.isChatMinimized();
 		});
 
 		this.app.provide('isChatHidden', () => {
-			window.Tawk_API.isCHatHidden();
+			return window.Tawk_API.isCHatHidden();
 		});
 
 		this.app.provide('isChatOngoing', () => {
-			window.Tawk_API.isChatOngoing();
+			return window.Tawk_API.isChatOngoing();
 		});
 
 		this.app.provide('isVisitorEngaged', () => {
-			window.Tawk_API.isVisitorEngaged();
+			return window.Tawk_API.isVisitorEngaged();
 		});
 
 		this.app.provide('onLoaded', () => {
-			window.Tawk_API.onLoaded;
+			return window.Tawk_API.onLoaded;
 		});
 
 		this.app.provide('onBeforeLoaded', () => {
-			window.Tawk_API.onBeforeLoaded;
+			return window.Tawk_API.onBeforeLoaded;
 		});
 
 		this.app.provide('widgetPosition', () => {
-			window.Tawk_API.widgetPosition();
+			return window.Tawk_API.widgetPosition();
 		});
 	}
 
