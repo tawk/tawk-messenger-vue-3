@@ -387,9 +387,9 @@ Callback function invoked when message is sent by the agent. The message is pass
 `Composition API`
 ```html
 <script setup>
-    const onChatMessageeAgent = inject('onChatMessageeAgent');
+    const onChatMessageAgent = inject('onChatMessageAgent');
 
-    onChatMessageeAgent((message) => {
+    onChatMessageAgent((message) => {
         // place your code here
     });
 </script>
@@ -1554,7 +1554,7 @@ app.use(TawkMessengerVue, {
 app.use(TawkMessengerVue, {
     customStyle : {
         visibility : {
-            dekstop : {
+            desktop : {
                 xOffset : String | Integer, // '20' || 20
                 yOffset : String | Integer,
                 position : '' // 'br', 'bl', 'cr', 'cl', 'tr', 'tl'
@@ -1574,7 +1574,7 @@ app.use(TawkMessengerVue, {
 app.use(TawkMessengerVue, {
     customStyle : {
         visibility : {
-            dekstop : {
+            desktop : {
                 xOffset : '15',
                 yOffset : '15',
                 position : 'cr'

@@ -122,7 +122,7 @@ class TawkMessenger {
 		});
 
 		this.app.provide('isChatHidden', () => {
-			return window.Tawk_API.isCHatHidden();
+			return window.Tawk_API.isChatHidden();
 		});
 
 		this.app.provide('isChatOngoing', () => {
