@@ -103,7 +103,7 @@ class TawkMessenger {
       return window.Tawk_API.isChatMinimized();
     });
     this.app.provide("isChatHidden", () => {
-      return window.Tawk_API.isCHatHidden();
+      return window.Tawk_API.isChatHidden();
     });
     this.app.provide("isChatOngoing", () => {
       return window.Tawk_API.isChatOngoing();
