@@ -58,6 +58,7 @@ Use the JavaScript API to manipulate the chat widget displayed on your website.
   - [customstyle](#customstyle)
     - [zIndex](#zindex)
     - [Visibility](#visibility)
+  - [switchWidget](#switchwidget)
 
 <br/>
 
@@ -1588,4 +1589,40 @@ app.use(TawkMessengerVue, {
         }
     }
 });
+```
+
+<br/>
+
+## switchWidget
+Disconnect the current widget connection, logout if it has existing user login and switch to
+another widget.
+
+`Composition API`
+```html
+<script setup>
+    const switchWidget = inject('switchWidget');
+
+    switchWidget({
+        propertyId : 'your-property-id',
+        widgetId : 'your-widget-id'
+    }, function () {
+        // do something
+    });
+</script>
+```
+
+`Options API`
+```js
+export default {
+    inject : ['switchWidget'],
+
+    mounted() {
+        this.switchWidget({
+            propertyId : 'your-property-id',
+            widgetId : 'your-widget-id'
+        }, function() {
+            // do something
+        });
+    }
+}
 ```

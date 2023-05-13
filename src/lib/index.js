@@ -295,6 +295,13 @@ class TawkMessenger {
 		this.app.provide('removeTags', (tags, callback) => {
 			window.Tawk_API.removeTags(tags, callback);
 		});
+
+		this.app.provide('switchWidget', ({ propertyId = null, widgetId = null }, callback = () => {}) => {
+			window.Tawk_API.switchWidget({
+				propertyId : propertyId,
+				widgetId : widgetId
+			}, callback);
+		});
 	}
 }
 
