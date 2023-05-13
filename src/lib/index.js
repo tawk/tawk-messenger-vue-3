@@ -296,11 +296,8 @@ class TawkMessenger {
 			window.Tawk_API.removeTags(tags, callback);
 		});
 
-		this.app.provide('switchWidget', ({ propertyId = null, widgetId = null }, callback = () => {}) => {
-			window.Tawk_API.switchWidget({
-				propertyId : propertyId,
-				widgetId : widgetId
-			}, callback);
+		this.app.provide('switchWidget', (data, callback) => {
+			window.Tawk_API.switchWidget(data, callback);
 		});
 	}
 }
