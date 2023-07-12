@@ -70,7 +70,7 @@ pop out chat window.
 <script setup>
     const onLoad = inject('onLoad');
 
-    onload(() => {
+    onLoad(() => {
         // place your code here
     });
 </script>
