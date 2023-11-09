@@ -68,6 +68,14 @@ class TawkMessenger {
 	 * API for calling an action on the widget
 	 */
 	provideActions() {
+		this.app.provide('start', () => {
+			window.Tawk_API.start();
+		});
+
+		this.app.provide('shutdown', () => {
+			window.Tawk_API.shutdown();
+		});
+
 		this.app.provide('maximize', () => {
 			window.Tawk_API.maximize();
 		});
@@ -276,8 +284,12 @@ class TawkMessenger {
 	 * API for setting a data on the widget
 	 */
 	provideSetters() {
+		this.app.provide('autoStart', (enable) => {
+			window.Tawk_API.autoStart = enable;
+		});
+
 		this.app.provide('visitor', (data) => {
-			window.Tawk_API.visitor(data);
+			window.Tawk_API.visitor = data;
 		});
 
 		this.app.provide('setAttributes', (attribute, callback) => {
