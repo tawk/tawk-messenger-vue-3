@@ -32,6 +32,9 @@ Use the JavaScript API to manipulate the chat widget displayed on your website.
   - [onTagsUpdated](#ontagsupdated)
   - [onUnreadCountChanged](#onunreadcountchanged)
   - [visitor](#visitor)
+  - [autoStart](#autostart)
+  - [start](#start)
+  - [shutdown](#shutdown)
   - [maximize](#maximize)
   - [minimize](#minimize)
   - [toggle](#toggle)
@@ -671,6 +674,85 @@ export default {
             name : 'Name',
             email : 'email@email.com'
         });
+    }
+}
+```
+
+<br/>
+
+## autoStart
+If set to true, it will auto-start the Tawk socket connection for chat services. If set to false,
+you will need to manually call the start API. It will not register and connect to the dashboard
+if this is set to false.
+
+`Composition API`
+```html
+<script setup>
+    const autoStart = inject('autoStart');
+
+    autoStart(false);
+</script>
+```
+
+`Options API`
+```js
+export default {
+    inject : ['autoStart'],
+
+    mounted() {
+        this.autoStart(false);
+    }
+}
+```
+
+<br/>
+
+## start
+Start the tawk socket connection.
+
+`Composition API`
+```html
+<script setup>
+    const start = inject('start');
+    const onLoad = inject('onLoad');
+
+    start();
+</script>
+```
+
+`Options API`
+```js
+export default {
+    inject : ['start', 'onLoad'],
+
+    mounted() {
+        this.start();
+    }
+}
+```
+
+<br/>
+
+## shutdown
+End the tawk socket connection.
+
+`Composition API`
+```html
+<script setup>
+    const shutdown = inject('shutdown');
+    const onLoad = inject('onLoad');
+
+    shutdown();
+</script>
+```
+
+`Options API`
+```js
+export default {
+    inject : ['shutdown', 'onLoad'],
+
+    mounted() {
+        this.shutdown();
     }
 }
 ```
