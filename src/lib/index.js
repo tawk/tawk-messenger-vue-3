@@ -286,10 +286,6 @@ class TawkMessenger {
 	 * API for setting a data on the widget
 	 */
 	provideSetters() {
-		this.app.provide('autoStart', (enable) => {
-			window.Tawk_API.autoStart = enable;
-		});
-
 		this.app.provide('visitor', (data) => {
 			window.Tawk_API.visitor = data;
 		});
