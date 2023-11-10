@@ -685,24 +685,14 @@ If set to true, it will auto-start the Tawk socket connection for chat services.
 you will need to manually call the start API. It will not register and connect to the dashboard
 if this is set to false.
 
-`Composition API`
-```html
-<script setup>
-    const autoStart = inject('autoStart');
-
-    autoStart(false);
-</script>
-```
-
-`Options API`
 ```js
-export default {
-    inject : ['autoStart'],
+import TawkMessengerVue from '@tawk.to/tawk-messenger-vue-3';
 
-    mounted() {
-        this.autoStart(false);
-    }
-}
+app.use(TawkMessengerVue, {
+    propertyId : 'property_id',
+    widgetId : 'widget_id',
+    autoStart : false
+});
 ```
 
 <br/>
