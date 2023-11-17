@@ -1,4 +1,4 @@
-function loadScript({ propertyId = "", widgetId = "", embedId = "", basePath = "tawk.to" }) {
+function loadScript({ propertyId = "", widgetId = "", embedId = "", basePath = "tawk.to", autoStart = true }) {
   if (embedId.length) {
     if (!document.getElementById(embedId)) {
       const element = document.createElement("div");
@@ -6,6 +6,9 @@ function loadScript({ propertyId = "", widgetId = "", embedId = "", basePath = "
       document.body.appendChild(element);
     }
     window.Tawk_API.embedded = embedId;
+  }
+  if (!autoStart) {
+    window.Tawk_API.autoStart = autoStart;
   }
   const script = document.createElement("script");
   script.async = true;
@@ -33,6 +36,7 @@ class TawkMessenger {
     this.propertyId = options.propertyId;
     this.widgetId = options.widgetId;
     this.embedId = options.embedId;
+    this.autoStart = options.autoStart;
     this.customStyle = options.customStyle;
     this.basePath = options.basePath;
     this.load();
@@ -47,7 +51,8 @@ class TawkMessenger {
       propertyId: this.propertyId,
       widgetId: this.widgetId,
       embedId: this.embedId,
-      basePath: this.basePath
+      basePath: this.basePath,
+      autoStart: this.autoStart
     });
     this.init();
   }
@@ -64,6 +69,12 @@ class TawkMessenger {
     this.provideSetters();
   }
   provideActions() {
+    this.app.provide("start", () => {
+      window.Tawk_API.start();
+    });
+    this.app.provide("shutdown", () => {
+      window.Tawk_API.shutdown();
+    });
     this.app.provide("maximize", () => {
       window.Tawk_API.maximize();
     });
@@ -225,7 +236,7 @@ class TawkMessenger {
   }
   provideSetters() {
     this.app.provide("visitor", (data) => {
-      window.Tawk_API.visitor(data);
+      window.Tawk_API.visitor = data;
     });
     this.app.provide("setAttributes", (attribute, callback) => {
       window.Tawk_API.setAttributes(attribute, callback);
