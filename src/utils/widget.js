@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 
-function loadScript({propertyId = '', widgetId = '', embedId = '', basePath = 'tawk.to'}) {
+function loadScript({propertyId = '', widgetId = '', embedId = '', basePath = 'tawk.to', autoStart = true}) {
 	if (embedId.length) {
 		/**
 		 * If the element with embedId as id we will create a new clement
@@ -13,6 +13,10 @@ function loadScript({propertyId = '', widgetId = '', embedId = '', basePath = 't
 		}
 
 		window.Tawk_API.embedded = embedId;
+	}
+
+	if (!autoStart) {
+		window.Tawk_API.autoStart = autoStart;
 	}
 
 	const script = document.createElement('script');
