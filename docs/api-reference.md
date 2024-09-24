@@ -11,70 +11,70 @@ Use the JavaScript API to manipulate the chat widget displayed on your website.
 ## Table of contents
 - [API Reference](#api-reference)
   - [Table of contents](#table-of-contents)
-  - [onLoad](#onload)
-  - [onStatusChange](#onstatuschange)
-  - [onBeforeLoad](#onbeforeload)
-  - [onChatMaximized](#onchatmaximized)
-  - [onChatMinimized](#onchatminimized)
-  - [onChatHidden](#onchathidden)
-  - [onChatStarted](#onchatstarted)
-  - [onChatEnded](#onchatended)
-  - [onPrechatSubmit](#onprechatsubmit)
-  - [onOfflineSubmit](#onofflinesubmit)
-  - [onChatMessageVisitor](#onchatmessagevisitor)
-  - [onChatMessageAgent](#onchatmessageagent)
-  - [onChatMessageSystem](#onchatmessagesystem)
-  - [onAgentJoinChat](#onagentjoinchat)
-  - [onAgentLeaveChat](#onagentleavechat)
-  - [onChatSatisfaction](#onchatsatisfaction)
-  - [onVisitorNameChanged](#onvisitornamechanged)
-  - [onFileUpload](#onfileupload)
-  - [onTagsUpdated](#ontagsupdated)
-  - [onUnreadCountChanged](#onunreadcountchanged)
-  - [visitor](#visitor)
+  - [tawkOnLoad](#tawkonload)
+  - [tawkOnStatusChange](#tawkonstatuschange)
+  - [tawkOnBeforeLoad](#tawkonbeforeload)
+  - [tawkOnChatMaximized](#tawkonchatmaximized)
+  - [tawkOnChatMinimized](#tawkonchatminimized)
+  - [tawkOnChatHidden](#tawkonchathidden)
+  - [tawkOnChatStarted](#tawkonchatstarted)
+  - [tawkOnChatEnded](#tawkonchatended)
+  - [tawkOnPrechatSubmit](#tawkonprechatsubmit)
+  - [tawkOnOfflineSubmit](#tawkonofflinesubmit)
+  - [tawkOnChatMessageVisitor](#tawkonchatmessagevisitor)
+  - [tawkOnChatMessageAgent](#tawkonchatmessageagent)
+  - [tawkOnChatMessageSystem](#tawkonchatmessagesystem)
+  - [tawkOnAgentJoinChat](#tawkonagentjoinchat)
+  - [tawkOnAgentLeaveChat](#tawkonagentleavechat)
+  - [tawkOnChatSatisfaction](#tawkonchatsatisfaction)
+  - [tawkOnVisitorNameChanged](#tawkonvisitornamechanged)
+  - [tawkOnFileUpload](#tawkonfileupload)
+  - [tawkOnTagsUpdated](#tawkontagsupdated)
+  - [tawkOnUnreadCountChanged](#tawkonunreadcountchanged)
+  - [tawkVisitor](#tawkvisitor)
   - [autoStart](#autostart)
   - [start](#start)
-  - [shutdown](#shutdown)
-  - [maximize](#maximize)
-  - [minimize](#minimize)
-  - [toggle](#toggle)
-  - [popup](#popup)
-  - [getWindowType](#getwindowtype)
-  - [showWidget](#showwidget)
-  - [hideWidget](#hidewidget)
-  - [toggleVisibility](#togglevisibility)
-  - [getStatus](#getstatus)
-  - [isChatMaximized](#ischatmaximized)
-  - [isChatMinimized](#ischatminimized)
-  - [isChatHidden](#ischathidden)
-  - [isChatOngoing](#ischatongoing)
-  - [isVisitorEngaged](#isvisitorengaged)
-  - [onLoaded](#onloaded)
-  - [onBeforeLoaded](#onbeforeloaded)
-  - [widgetPosition](#widgetposition)
-  - [endChat](#endchat)
-  - [setAttributes](#setattributes)
-  - [addEvent](#addevent)
-  - [addTags](#addtags)
-  - [removeTags](#removetags)
+  - [tawkShutdown](#tawkshutdown)
+  - [tawkMaximize](#tawkmaximize)
+  - [tawkMinimize](#tawkminimize)
+  - [tawkToggle](#tawktoggle)
+  - [tawkPopup](#tawkpopup)
+  - [tawkGetWindowType](#tawkgetwindowtype)
+  - [tawkShowWidget](#tawkshowwidget)
+  - [tawkHideWidget](#tawkhidewidget)
+  - [tawkToggleVisibility](#tawktogglevisibility)
+  - [tawkGetStatus](#tawkgetstatus)
+  - [tawkIsChatMaximized](#tawkischatmaximized)
+  - [tawkIsChatMinimized](#tawkischatminimized)
+  - [tawkIsChatHidden](#tawkischathidden)
+  - [tawkIsChatOngoing](#tawkischatongoing)
+  - [tawkIsVisitorEngaged](#tawkisvisitorengaged)
+  - [tawkOnLoaded](#tawkonloaded)
+  - [tawkOnBeforeLoaded](#tawkonbeforeloaded)
+  - [tawkWidgetPosition](#tawkwidgetposition)
+  - [tawkEndChat](#tawkendchat)
+  - [tawkSetAttributes](#tawksetattributes)
+  - [tawkAddEvent](#tawkaddevent)
+  - [tawkAddTags](#tawkaddtags)
+  - [tawkRemoveTags](#tawkremovetags)
   - [secureMode](#securemode)
   - [customstyle](#customstyle)
     - [zIndex](#zindex)
     - [Visibility](#visibility)
-  - [switchWidget](#switchwidget)
+  - [tawkSwitchWidget](#tawkswitchwidget)
 
 <br/>
 
-## onLoad
+## tawkOnLoad
 Callback function invoked right after the widget is rendered. This callback is not supported in
 pop out chat window.
 
 `Composition API`
 ```html
 <script setup>
-    const onLoad = inject('onLoad');
+    const tawkOnLoad = inject('tawkOnLoad');
 
-    onload(() => {
+    tawkOnload(() => {
         // place your code here
     });
 </script>
@@ -83,10 +83,10 @@ pop out chat window.
 `Options API`
 ```js
 export default {
-    inject : ['onLoad'],
+    inject : ['tawkOnLoad'],
 
     mounted() {
-        this.onLoad(() => {
+        this.tawkOnLoad(() => {
             // place your code here
         });
     }
@@ -95,15 +95,15 @@ export default {
 
 <br/>
 
-## onStatusChange
+## tawkOnStatusChange
 Callback function invoked when the page status changes. The function will receive the changed status which will be either online, away or offline. This callback is not supported in pop out chat window.
 
 `Composition API`
 ```html
 <script setup>
-    const onStatusChange = inject('onStatusChange');
+    const tawkOnStatusChange = inject('tawkOnStatusChange');
 
-    onStatusChange((status) => {
+    tawkOnStatusChange((status) => {
         // place your code here
     });
 </script>
@@ -112,10 +112,10 @@ Callback function invoked when the page status changes. The function will receiv
 `Options API`
 ```js
 export default {
-    inject : ['onStatusChange'],
+    inject : ['tawkOnStatusChange'],
 
     mounted() {
-        this.onStatusChange((status) => {
+        this.tawkOnStatusChange((status) => {
             // place your code here
         });
     }
@@ -124,15 +124,15 @@ export default {
 
 <br/>
 
-## onBeforeLoad
+## tawkOnBeforeLoad
 Callback function invoked right when Tawk_API is ready to be used and before the widget is rendered. This callback is not supported in pop out chat window.
 
 `Composition API`
 ```html
 <script setup>
-    const onBeforeLoad = inject('onBeforeLoad');
+    const tawkOnBeforeLoad = inject('tawkOnBeforeLoad');
 
-    onBeforeLoad(() => {
+    tawkOnBeforeLoad(() => {
         // place your code here
     });
 </script>
@@ -141,10 +141,10 @@ Callback function invoked right when Tawk_API is ready to be used and before the
 `Options API`
 ```js
 export default {
-    inject : ['onBeforeLoad'],
+    inject : ['tawkOnBeforeLoad'],
 
     mounted() {
-        this.onBeforeLoad(() => {
+        this.tawkOnBeforeLoad(() => {
             // place your code here
         });
     }
@@ -153,15 +153,15 @@ export default {
 
 <br/>
 
-## onChatMaximized
+## tawkOnChatMaximized
 Callback function invoked when the widget is maximized. This callback is not supported in pop out chat window.
 
 `Composition API`
 ```html
 <script setup>
-    const onChatMaximized = inject('onChatMaximized');
+    const tawkOnChatMaximized = inject('tawkOnChatMaximized');
 
-    onChatMaximized(() => {
+    tawkOnChatMaximized(() => {
         // place your code here
     });
 </script>
@@ -170,10 +170,10 @@ Callback function invoked when the widget is maximized. This callback is not sup
 `Options API`
 ```js
 export default {
-    inject : ['onChatMaximized'],
+    inject : ['tawkOnChatMaximized'],
 
     mounted() {
-        this.onChatMaximized(() => {
+        this.tawkOnChatMaximized(() => {
             // place your code here
         });
     }
@@ -182,15 +182,15 @@ export default {
 
 <br/>
 
-## onChatMinimized
+## tawkOnChatMinimized
 Callback function invoked when the widget is minimized. This callback is not supported in pop out chat window.
 
 `Composition API`
 ```html
 <script setup>
-    const onChatMinimized = inject('onChatMinimized');
+    const tawkOnChatMinimized = inject('tawkOnChatMinimized');
 
-    onChatMinimized(() => {
+    tawkOnChatMinimized(() => {
         // place your code here
     });
 </script>
@@ -199,10 +199,10 @@ Callback function invoked when the widget is minimized. This callback is not sup
 `Options API`
 ```js
 export default {
-    inject : ['onChatMinimized'],
+    inject : ['tawkOnChatMinimized'],
 
     mounted() {
-        this.onChatMinimized(() => {
+        this.tawkOnChatMinimized(() => {
             // place your code here
         });
     }
@@ -211,15 +211,15 @@ export default {
 
 <br/>
 
-## onChatHidden
+## tawkOnChatHidden
 Callback function invoked when the widget is hidden. This callback is not supported in pop out chat window.
 
 `Composition API`
 ```html
 <script setup>
-    const onChatHidden = inject('onChatHidden');
+    const tawkOnChatHidden = inject('tawkOnChatHidden');
 
-    onChatHidden(() => {
+    tawkOnChatHidden(() => {
         // place your code here
     });
 </script>
@@ -228,10 +228,10 @@ Callback function invoked when the widget is hidden. This callback is not suppor
 `Options API`
 ```js
 export default {
-    inject : ['onChatHidden'],
+    inject : ['tawkOnChatHidden'],
 
     mounted() {
-        this.onChatHidden(() => {
+        this.tawkOnChatHidden(() => {
             // place your code here
         });
     }
@@ -240,15 +240,15 @@ export default {
 
 <br/>
 
-## onChatStarted
+## tawkOnChatStarted
 Callback function invoked when the widget is started.
 
 `Composition API`
 ```html
 <script setup>
-    const onChatStarted = inject('onChatStarted');
+    const tawkOnChatStarted = inject('tawkOnChatStarted');
 
-    onChatStarted(() => {
+    tawkOnChatStarted(() => {
         // place your code here
     });
 </script>
@@ -257,10 +257,10 @@ Callback function invoked when the widget is started.
 `Options API`
 ```js
 export default {
-    inject : ['onChatStarted'],
+    inject : ['tawkOnChatStarted'],
 
     mounted() {
-        this.onChatStarted(() => {
+        this.tawkOnChatStarted(() => {
             // place your code here
         });
     }
@@ -269,15 +269,15 @@ export default {
 
 <br/>
 
-## onChatEnded
+## tawkOnChatEnded
 Callback function invoked when the widget is ended. This callback is not supported in pop out chat window.
 
 `Composition API`
 ```html
 <script setup>
-    const onChatEnded = inject('onChatEnded');
+    const tawkOnChatEnded = inject('tawkOnChatEnded');
 
-    onChatEnded(() => {
+    tawkOnChatEnded(() => {
         // place your code here
     });
 </script>
@@ -286,10 +286,10 @@ Callback function invoked when the widget is ended. This callback is not support
 `Options API`
 ```js
 export default {
-    inject : ['onChatEnded'],
+    inject : ['tawkOnChatEnded'],
 
     mounted() {
-        this.onChatEnded(() => {
+        this.tawkOnChatEnded(() => {
             // place your code here
         });
     }
@@ -298,15 +298,15 @@ export default {
 
 <br/>
 
-## onPrechatSubmit
+## tawkOnPrechatSubmit
 Callback function invoked when the Pre-Chat Form is submitted. The submitted form data is passed to the function. This callback is not supported in pop out chat window.
 
 `Composition API`
 ```html
 <script setup>
-    const onPrechatSubmit = inject('onPrechatSubmit');
+    const tawkOnPrechatSubmit = inject('tawkOnPrechatSubmit');
 
-    onPrechatSubmit((data) => {
+    tawkOnPrechatSubmit((data) => {
         // place your code here
     });
 </script>
@@ -315,10 +315,10 @@ Callback function invoked when the Pre-Chat Form is submitted. The submitted for
 `Options API`
 ```js
 export default {
-    inject : ['onPrechatSubmit'],
+    inject : ['tawkOnPrechatSubmit'],
 
     mounted() {
-        this.onPrechatSubmit((data) => {
+        this.tawkOnPrechatSubmit((data) => {
             // place your code here
         });
     }
@@ -327,15 +327,15 @@ export default {
 
 <br/>
 
-## onOfflineSubmit
+## tawkOnOfflineSubmit
 Callback function invoked when the Offline form is submitted. The submitted form data is passed to the function. Form data will contain {name : ”, email : ”, message : ”, questions : []}. This callback is not supported in pop out chat window.
 
 `Composition API`
 ```html
 <script setup>
-    const onOfflineSubmit = inject('onOfflineSubmit');
+    const tawkOnOfflineSubmit = inject('tawkOnOfflineSubmit');
 
-    onOfflineSubmit((data) => {
+    tawkOnOfflineSubmit((data) => {
         // place your code here
     });
 </script>
@@ -344,10 +344,10 @@ Callback function invoked when the Offline form is submitted. The submitted form
 `Options API`
 ```js
 export default {
-    inject : ['onOfflineSubmit'],
+    inject : ['tawkOnOfflineSubmit'],
 
     mounted() {
-        this.onOfflineSubmit((data => {
+        this.tawkOnOfflineSubmit((data => {
             // place your code here
         });
     }
@@ -356,15 +356,15 @@ export default {
 
 <br/>
 
-## onChatMessageVisitor
+## tawkOnChatMessageVisitor
 Callback function invoked when message is sent by the visitor. The message is passed to the function. This callback is not supported in pop out chat window.
 
 `Composition API`
 ```html
 <script setup>
-    const onChatMessageVisitor = inject('onChatMessageVisitor');
+    const tawkOnChatMessageVisitor = inject('tawkOnChatMessageVisitor');
 
-    onChatMessageVisitor((message) => {
+    tawkOnChatMessageVisitor((message) => {
         // place your code here
     });
 </script>
@@ -373,10 +373,10 @@ Callback function invoked when message is sent by the visitor. The message is pa
 `Options API`
 ```js
 export default {
-    inject : ['onChatMessageVisitor'],
+    inject : ['tawkOnChatMessageVisitor'],
 
     mounted() {
-        this.onChatMessageVisitor((message) => {
+        this.tawkOnChatMessageVisitor((message) => {
             // place your code here
         });
     }
@@ -385,15 +385,15 @@ export default {
 
 <br/>
 
-## onChatMessageAgent
+## tawkOnChatMessageAgent
 Callback function invoked when message is sent by the agent. The message is passed to the function. This callback is not supported in pop out chat window.
 
 `Composition API`
 ```html
 <script setup>
-    const onChatMessageAgent = inject('onChatMessageAgent');
+    const tawkOnChatMessageAgent = inject('tawkOnChatMessageAgent');
 
-    onChatMessageAgent((message) => {
+    tawkOnChatMessageAgent((message) => {
         // place your code here
     });
 </script>
@@ -402,10 +402,10 @@ Callback function invoked when message is sent by the agent. The message is pass
 `Options API`
 ```js
 export default {
-    inject : ['onChatMessageeAgent'],
+    inject : ['tawkOnChatMessageAgent'],
 
     mounted() {
-        this.onChatMessageeAgent((message) => {
+        this.tawkOnChatMessageAgent((message) => {
             // place your code here
         });
     }
@@ -414,15 +414,15 @@ export default {
 
 <br/>
 
-## onChatMessageSystem
+## tawkOnChatMessageSystem
 Callback function invoked when message is sent by the system. The message is passed to the function. This callback is not supported in pop out chat window.
 
 `Composition API`
 ```html
 <script setup>
-    const onChatMessageSystem = inject('onChatMessageSystem');
+    const tawkOnChatMessageSystem = inject('tawkOnChatMessageSystem');
 
-    onChatMessageSystem((message) => {
+    tawkOnChatMessageSystem((message) => {
         // place your code here
     });
 </script>
@@ -431,10 +431,10 @@ Callback function invoked when message is sent by the system. The message is pas
 `Options API`
 ```js
 export default {
-    inject : ['onChatMessageSystem'],
+    inject : ['tawkOnChatMessageSystem'],
 
     mounted() {
-        this.onChatMessageSystem((message) => {
+        this.tawkOnChatMessageSystem((message) => {
             // place your code here
         });
     }
@@ -443,15 +443,15 @@ export default {
 
 <br/>
 
-## onAgentJoinChat
+## tawkOnAgentJoinChat
 Callback function invoked when an agent joins the chat. The data is passed to the function. Will contain {name : ”, position : ”, image : ”, id : ”}. This callback is not supported in pop out chat window.
 
 `Composition API`
 ```html
 <script setup>
-    const onAgentJoinChat = inject('onAgentJoinChat');
+    const tawkOnAgentJoinChat = inject('tawkOnAgentJoinChat');
 
-    onAgentJoinChat((data) => {
+    tawkOnAgentJoinChat((data) => {
         // place your code here
     });
 </script>
@@ -460,10 +460,10 @@ Callback function invoked when an agent joins the chat. The data is passed to th
 `Options API`
 ```js
 export default {
-    inject : ['onAgentJoinChat'],
+    inject : ['tawkOnAgentJoinChat'],
 
     mounted() {
-        this.onAgentJoinChat((data) => {
+        this.tawkOnAgentJoinChat((data) => {
             // place your code here
         });
     }
@@ -472,15 +472,15 @@ export default {
 
 <br/>
 
-## onAgentLeaveChat
+## tawkOnAgentLeaveChat
 Callback function invoked when an agent leaves the chat. The data is passed to the function. Will contain {name : ”, id : ”}. This callback is not supported in pop out chat window.
 
 `Composition API`
 ```html
 <script setup>
-    const onAgentLeaveChat = inject('onAgentLeaveChat');
+    const tawkOnAgentLeaveChat = inject('tawkOnAgentLeaveChat');
 
-    onAgentLeaveChat((data) => {
+    tawkOnAgentLeaveChat((data) => {
         // place your code here
     });
 </script>
@@ -489,10 +489,10 @@ Callback function invoked when an agent leaves the chat. The data is passed to t
 `Options API`
 ```js
 export default {
-    inject : ['onAgentLeaveChat'],
+    inject : ['tawkOnAgentLeaveChat'],
 
     mounted() {
-        this.onAgentLeaveChat((data) => {
+        this.tawkOnAgentLeaveChat((data) => {
             // place your code here
         });
     }
@@ -501,15 +501,15 @@ export default {
 
 <br/>
 
-## onChatSatisfaction
+## tawkOnChatSatisfaction
 Callback function invoked when an agent leaves the chat. The satisfaction is passed to the function. -1 = dislike | 0 = neutral | 1 = like. This callback is not supported in pop out chat window.
 
 `Composition API`
 ```html
 <script setup>
-    const onChatSatisfaction = inject('onChatSatisfaction');
+    const tawkOnChatSatisfaction = inject('tawkOnChatSatisfaction');
 
-    onChatSatisfaction((satisfaction) => {
+    tawkOnChatSatisfaction((satisfaction) => {
         // place your code here
     });
 </script>
@@ -518,10 +518,10 @@ Callback function invoked when an agent leaves the chat. The satisfaction is pas
 `Options API`
 ```js
 export default {
-    inject : ['onChatSatisfaction'],
+    inject : ['tawkOnChatSatisfaction'],
 
     mounted() {
-        this.onChatSatisfaction((satisfaction) => {
+        this.tawkOnChatSatisfaction((satisfaction) => {
             // place your code here
         });
     }
@@ -530,15 +530,15 @@ export default {
 
 <br/>
 
-## onVisitorNameChanged
+## tawkOnVisitorNameChanged
 Callback function invoked when the visitor manually changes his name. The visitorName is passed to the function. This callback is not supported in pop out chat window.
 
 `Composition API`
 ```html
 <script setup>
-    const onVisitorNameChanged = inject('onVisitorNameChanged');
+    const tawkOnVisitorNameChanged = inject('tawkOnVisitorNameChanged');
 
-    onVisitorNameChanged((visitorName) => {
+    tawkOnVisitorNameChanged((visitorName) => {
         // place your code here
     });
 </script>
@@ -547,10 +547,10 @@ Callback function invoked when the visitor manually changes his name. The visito
 `Options API`
 ```js
 export default {
-    inject : ['onVisitorNameChanged'],
+    inject : ['tawkOnVisitorNameChanged'],
 
     mounted() {
-        this.onVisitorNameChanged((visitorName) => {
+        this.tawkOnVisitorNameChanged((visitorName) => {
             // place your code here
         });
     }
@@ -559,15 +559,15 @@ export default {
 
 <br/>
 
-## onFileUpload
+## tawkOnFileUpload
 Callback function invoked when a file is uploaded. The link to the uploaded file is passed to the function. This callback is not supported in pop out chat window.
 
 `Composition API`
 ```html
 <script setup>
-    const onFileUpload = inject('onFileUpload');
+    const tawkOnFileUpload = inject('tawkOnFileUpload');
 
-    onFileUpload((link) => {
+    tawkOnFileUpload((link) => {
         // place your code here
     });
 </script>
@@ -576,10 +576,10 @@ Callback function invoked when a file is uploaded. The link to the uploaded file
 `Options API`
 ```js
 export default {
-    inject : ['onFileUpload'],
+    inject : ['tawkOnFileUpload'],
 
     mounted() {
-        this.onFileUpload((link) => {
+        this.tawkOnFileUpload((link) => {
             // place your code here
         });
     }
@@ -588,15 +588,15 @@ export default {
 
 <br/>
 
-## onTagsUpdated
+## tawkOnTagsUpdated
 Callback function invoked when a tag is updated.
 
 `Composition API`
 ```html
 <script setup>
-    const onTagsUpdated = inject('onTagsUpdated');
+    const tawkOnTagsUpdated = inject('tawkOnTagsUpdated');
 
-    onTagsUpdated((data) => {
+    tawkOnTagsUpdated((data) => {
         // place your code here
     });
 </script>
@@ -605,10 +605,10 @@ Callback function invoked when a tag is updated.
 `Options API`
 ```js
 export default {
-    inject : ['onTagsUpdated'],
+    inject : ['tawkOnTagsUpdated'],
 
     mounted() {
-        this.onTagsUpdated((data) => {
+        this.tawkOnTagsUpdated((data) => {
             // place your code here
         });
     }
@@ -617,15 +617,15 @@ export default {
 
 <br/>
 
-## onUnreadCountChanged
+## tawkOnUnreadCountChanged
 Callback function returns count of unread messages.
 
 `Composition API`
 ```html
 <script setup>
-    const onUnreadCountChanged = inject('onUnreadCountChanged');
+    const tawkOnUnreadCountChanged = inject('tawkOnUnreadCountChanged');
 
-    onUnreadCountChanged((count) => {
+    tawkOnUnreadCountChanged((count) => {
         // place your code here
     });
 </script>
@@ -634,10 +634,10 @@ Callback function returns count of unread messages.
 `Options API`
 ```js
 export default {
-    inject : ['onUnreadCountChanged'],
+    inject : ['tawkOnUnreadCountChanged'],
 
     mounted() {
-        this.onUnreadCountChanged((count) => {
+        this.tawkOnUnreadCountChanged((count) => {
             // place your code here
         });
     }
@@ -646,7 +646,7 @@ export default {
 
 <br/>
 
-## visitor
+## tawkVisitor
 Object used to set the visitor name and email. Do not place this object in a function, as the values need to be available before the widget script is downloaded.
 
 Setting or changing the values after the widget script has been downloaded will not send the values to the dashboard.
@@ -656,9 +656,9 @@ If the name and email will not be available on load time (eg single page app, aj
 `Composition API`
 ```html
 <script setup>
-    const visitor = inject('visitor');
+    const tawkVisitor = inject('tawkVisitor');
 
-    visitor({
+    tawkVisitor({
         name : 'Name',
         email : 'email@email.com'
     });
@@ -668,10 +668,10 @@ If the name and email will not be available on load time (eg single page app, aj
 `Options API`
 ```js
 export default {
-    inject : ['visitor'],
+    inject : ['tawkVisitor'],
 
     mounted() {
-        this.visitor({
+        this.tawkVisitor({
             name : 'Name',
             email : 'email@email.com'
         });
@@ -704,8 +704,7 @@ Start the tawk socket connection.
 `Composition API`
 ```html
 <script setup>
-    const start = inject('start');
-    const onLoad = inject('onLoad');
+    const tawkStart = inject('tawkStart');
 
     start();
 </script>
@@ -714,53 +713,52 @@ Start the tawk socket connection.
 `Options API`
 ```js
 export default {
-    inject : ['start', 'onLoad'],
+    inject : ['tawkStart'],
 
     mounted() {
-        this.start();
+        this.tawkStart();
     }
 }
 ```
 
 <br/>
 
-## shutdown
+## tawkShutdown
 End the tawk socket connection.
 
 `Composition API`
 ```html
 <script setup>
-    const shutdown = inject('shutdown');
-    const onLoad = inject('onLoad');
+    const tawkShutdown = inject('tawkShutdown');
 
-    shutdown();
+    tawkShutdown();
 </script>
 ```
 
 `Options API`
 ```js
 export default {
-    inject : ['shutdown', 'onLoad'],
+    inject : ['tawkShutdown'],
 
     mounted() {
-        this.shutdown();
+        this.tawkShutdown();
     }
 }
 ```
 
 <br/>
 
-## maximize
+## tawkMaximize
 Maximizes the chat widget.
 
 `Composition API`
 ```html
 <script setup>
-    const maximize = inject('maximize');
-    const onLoad = inject('onLoad');
+    const tawkMaximize = inject('tawkMaximize');
+    const tawkOnLoad = inject('tawkOnLoad');
 
-    onLoad(() => {
-        maximize();
+    tawkOnLoad(() => {
+        tawkMaximize();
     });
 </script>
 ```
@@ -768,11 +766,11 @@ Maximizes the chat widget.
 `Options API`
 ```js
 export default {
-    inject : ['maximize', 'onLoad'],
+    inject : ['tawkMaximize', 'tawkOnLoad'],
 
     mounted() {
-        this.onLoad(() => {
-            this.maximize();
+        this.tawkOnLoad(() => {
+            this.tawkMaximize();
         });
     }
 }
@@ -780,17 +778,17 @@ export default {
 
 <br/>
 
-## minimize
+## tawkMinimize
 Minimizes the chat widget.
 
 `Composition API`
 ```html
 <script setup>
-    const minimize = inject('minimize');
-    const onLoad = inject('onLoad');
+    const tawkMinimize = inject('tawkMinimize');
+    const tawkOnLoad = inject('tawkOnLoad');
 
-    onLoad(() => {
-        minimize();
+    tawkOnLoad(() => {
+        tawkMinimize();
     });
 </script>
 ```
@@ -798,11 +796,11 @@ Minimizes the chat widget.
 `Options API`
 ```js
 export default {
-    inject : ['minimize', 'onLoad'],
+    inject : ['tawkMinimize', 'tawkOnLoad'],
 
     mounted() {
-        this.onLoad(() => {
-            this.minimize();
+        this.tawkOnLoad(() => {
+            this.tawkMinimize();
         });
     }
 }
@@ -810,17 +808,17 @@ export default {
 
 <br/>
 
-## toggle
+## tawkToggle
 Minimizes or Maximizes the chat widget based on the current state.
 
 `Composition API`
 ```html
 <script setup>
-    const toggle = inject('toggle');
-    const onLoad = inject('onLoad');
+    const tawkToggle = inject('tawkToggle');
+    const tawkOnLoad = inject('tawkOnLoad');
 
-    onLoad(() => {
-        toggle();
+    tawkOnLoad(() => {
+        tawkToggle();
     });
 </script>
 ```
@@ -828,11 +826,11 @@ Minimizes or Maximizes the chat widget based on the current state.
 `Options API`
 ```js
 export default {
-    inject : ['toggle', 'onLoad'],
+    inject : ['tawkToggle', 'tawkOnLoad'],
 
     mounted() {
-        this.onLoad(() => {
-            this.toggle();
+        this.tawkOnLoad(() => {
+            this.tawkToggle();
         });
     }
 }
@@ -840,17 +838,17 @@ export default {
 
 <br/>
 
-## popup
+## tawkPopup
 Opens the chat widget as a pop out.
 
 `Composition API`
 ```html
 <script setup>
-    const popup = inject('popup');
-    const onLoad = inject('onLoad');
+    const tawkPopup = inject('tawkPopup');
+    const tawkOnLoad = inject('tawkOnLoad');
 
-    onLoad(() => {
-        popup();
+    tawkOnLoad(() => {
+        tawkPopup();
     });
 </script>
 ```
@@ -858,11 +856,11 @@ Opens the chat widget as a pop out.
 `Options API`
 ```js
 export default {
-    inject : ['popup', 'onLoad'],
+    inject : ['tawkPopup', 'tawkOnLoad'],
 
     mounted() {
-        this.onLoad(() => {
-            this.popup();
+        this.tawkOnLoad(() => {
+            this.tawkPopup();
         });
     }
 }
@@ -870,17 +868,17 @@ export default {
 
 <br/>
 
-## getWindowType
+## tawkGetWindowType
 Returns the current widget type whether it’s inline or embed.
 
 `Composition API`
 ```html
 <script setup>
-    const getWindowType = inject('getWindowType');
-    const onLoad = inject('onLoad');
+    const tawkGetWindowType = inject('tawkGetWindowType');
+    const tawkOnLoad = inject('tawkOnLoad');
 
-    onLoad(() => {
-        if (getWindowType() === 'inline') {
+    tawkOnLoad(() => {
+        if (tawkGetWindowType() === 'inline') {
             // do something if it's inline
         } else {
             // do something if it's embed
@@ -892,11 +890,11 @@ Returns the current widget type whether it’s inline or embed.
 `Options API`
 ```js
 export default {
-    inject : ['getWindowType', 'onLoad'],
+    inject : ['tawkGetWindowType', 'tawkOnLoad'],
 
     mounted() {
-        this.onLoad(() => {
-            if (this.getWindowType() === 'inline') {
+        this.tawkOnLoad(() => {
+            if (this.tawkGetWindowType() === 'inline') {
                 // do something if it's inline
             } else {
                 // do something if it's embed
@@ -908,17 +906,17 @@ export default {
 
 <br/>
 
-## showWidget
+## tawkShowWidget
 Shows the chat widget.
 
 `Composition API`
 ```html
 <script setup>
-    const showWidget = inject('showWidget');
-    const onLoad = inject('onLoad');
+    const tawkShowWidget = inject('tawkShowWidget');
+    const tawkOnLoad = inject('tawkOnLoad');
 
-    onLoad(() => {
-        showWidget();
+    tawkOnLoad(() => {
+        tawkShowWidget();
     });
 </script>
 ```
@@ -926,11 +924,11 @@ Shows the chat widget.
 `Options API`
 ```js
 export default {
-    inject : ['showWidget', 'onLoad'],
+    inject : ['tawkShowWidget', 'tawkOnLoad'],
 
     mounted() {
-        this.onLoad(() => {
-            this.showWidget();
+        this.tawkOnLoad(() => {
+            this.tawkShowWidget();
         });
     }
 }
@@ -938,17 +936,17 @@ export default {
 
 <br/>
 
-## hideWidget
+## tawkHideWidget
 Hide the chat widget.
 
 `Composition API`
 ```html
 <script setup>
-    const hideWidget = inject('hideWidget');
-    const onLoad = inject('onLoad');
+    const tawkHideWidget = inject('tawkHideWidget');
+    const tawkOnLoad = inject('tawkOnLoad');
 
-    onLoad(() => {
-        hideWidget();
+    tawkOnLoad(() => {
+        tawkHideWidget();
     });
 </script>
 ```
@@ -956,11 +954,11 @@ Hide the chat widget.
 `Options API`
 ```js
 export default {
-    inject : ['hideWidget', 'onLoad'],
+    inject : ['tawkHideWidget', 'tawkOnLoad'],
 
     mounted() {
-        this.onLoad(() => {
-            this.hideWidget();
+        this.tawkOnLoad(() => {
+            this.tawkHideWidget();
         });
     }
 }
@@ -968,17 +966,17 @@ export default {
 
 <br/>
 
-## toggleVisibility
+## tawkToggleVisibility
 Hides or Shows the chat widget based on the current visibility state.
 
 `Composition API`
 ```html
 <script setup>
-    const toggleVisibility = inject('toggleVisibility');
-    const onLoad = inject('onLoad');
+    const tawkToggleVisibility = inject('tawkToggleVisibility');
+    const tawkOnLoad = inject('tawkOnLoad');
 
-    onLoad(() => {
-        toggleVisibility();
+    tawkOnLoad(() => {
+        tawkToggleVisibility();
     });
 </script>
 ```
@@ -986,11 +984,11 @@ Hides or Shows the chat widget based on the current visibility state.
 `Options API`
 ```js
 export default {
-    inject : ['toggleVisibility', 'onLoad'],
+    inject : ['tawkToggleVisibility', 'tawkOnLoad'],
 
     mounted() {
-        this.onLoad(() => {
-            this.toggleVisibility();
+        this.tawkOnLoad(() => {
+            this.tawkToggleVisibility();
         });
     }
 }
@@ -998,19 +996,19 @@ export default {
 
 <br/>
 
-## getStatus
+## tawkGetStatus
 Returns the current page status (online, away or offline).
 
 `Composition API`
 ```html
 <script setup>
-    const getStatus = inject('getStatus');
-    const onLoad = inject('onLoad');
+    const tawkGetStatus = inject('tawkGetStatus');
+    const tawkOnLoad = inject('tawkOnLoad');
 
-    onLoad(() => {
-        if (getStatus() === 'online') {
+    tawkOnLoad(() => {
+        if (tawkGetStatus() === 'online') {
             // do something for online
-        } else if (getStatus() === 'away') {
+        } else if (tawkGetStatus() === 'away') {
             // do something for away
         } else {
             // do something for offline
@@ -1022,13 +1020,13 @@ Returns the current page status (online, away or offline).
 `Options API`
 ```js
 export default {
-    inject : ['getStatus', 'onLoad'],
+    inject : ['tawkGetStatus', 'tawkOnLoad'],
 
     mounted() {
-        this.onLoad(() => {
-            if (this.getStatus() === 'online') {
+        this.tawkOnLoad(() => {
+            if (this.tawkGetStatus() === 'online') {
                 // do something for online
-            } else if (this.getStatus() === 'away') {
+            } else if (this.tawkGetStatus() === 'away') {
                 // do something for away
             } else {
                 // do something for offline
@@ -1040,17 +1038,17 @@ export default {
 
 <br/>
 
-## isChatMaximized
+## tawkIsChatMaximized
 Returns a boolean value (true or false) indicating whether the chat widget is maximized.
 
 `Composition API`
 ```html
 <script setup>
-    const isChatMaximized = inject('isChatMaximized');
-    const onLoad = inject('onLoad');
+    const tawkIsChatMaximized = inject('tawkIsChatMaximized');
+    const tawkOnLoad = inject('tawkOnLoad');
 
-    onLoad(() => {
-        if (isChatMaximized()) {
+    tawkOnLoad(() => {
+        if (tawkIsChatMaximized()) {
             // do something if it's maximized
         }
     });
@@ -1060,11 +1058,11 @@ Returns a boolean value (true or false) indicating whether the chat widget is ma
 `Options API`
 ```js
 export default {
-    inject : ['isChatMaximized', 'onLoad'],
+    inject : ['tawkIsChatMaximized', 'tawkOnLoad'],
 
     mounted() {
-        this.onLoad(() => {
-            if (this.isChatMaximized()) {
+        this.tawkOnLoad(() => {
+            if (this.tawkIsChatMaximized()) {
                 // do something if it's maximized
             }
         });
@@ -1074,17 +1072,17 @@ export default {
 
 <br/>
 
-## isChatMinimized
+## tawkIsChatMinimized
 Returns a boolean value (true or false) indicating whether the chat widget is minimized.
 
 `Composition API`
 ```html
 <script setup>
-    const isChatMinimized = inject('isChatMinimized');
-    const onLoad = inject('onLoad');
+    const tawkIsChatMinimized = inject('tawkIsChatMinimized');
+    const tawkOnLoad = inject('tawkOnLoad');
 
-    onLoad(() => {
-        if (isChatMinimized()) {
+    tawkOnLoad(() => {
+        if (tawkIsChatMinimized()) {
             // do something if it's minimized
         }
     });
@@ -1094,11 +1092,11 @@ Returns a boolean value (true or false) indicating whether the chat widget is mi
 `Options API`
 ```js
 export default {
-    inject : ['isChatMinimized', 'onLoad'],
+    inject : ['tawkIsChatMinimized', 'tawkOnLoad'],
 
     mounted() {
-        this.onLoad(() => {
-            if(this.isChatMinimized()) {
+        this.tawkOnLoad(() => {
+            if(this.tawkIsChatMinimized()) {
                 // do something if it's minimized
             }
         });
@@ -1108,17 +1106,17 @@ export default {
 
 <br/>
 
-## isChatHidden
+## tawkIsChatHidden
 Returns a boolean value (true or false) indicating whether the chat widget is hidden.
 
 `Composition API`
 ```html
 <script setup>
-    const isChatHidden = inject('isChatHidden');
-    const onLoad = inject('onLoad');
+    const tawkIsChatHidden = inject('tawkIsChatHidden');
+    const tawkOnLoad = inject('tawkOnLoad');
 
-    onLoad(() => {
-        if (isChatHidden()) {
+    tawkOnLoad(() => {
+        if (tawkIsChatHidden()) {
             // do something if chat widget is hidden
         }
     });
@@ -1128,11 +1126,11 @@ Returns a boolean value (true or false) indicating whether the chat widget is hi
 `Options API`
 ```js
 export default {
-    inject : ['isChatHidden', 'onLoad'],
+    inject : ['tawkIsChatHidden', 'tawkOnLoad'],
 
     mounted() {
-        this.onLoad(() => {
-            if(this.isChatHidden()) {
+        this.tawkOnLoad(() => {
+            if(this.tawkIsChatHidden()) {
                 // do something if chat widget is hidden
             }
         });
@@ -1142,17 +1140,17 @@ export default {
 
 <br/>
 
-## isChatOngoing
+## tawkIsChatOngoing
 Returns a boolean value (true or false) indicating whether currently there is an ongoing chat.
 
 `Composition API`
 ```html
 <script setup>
-    const isChatOngoing = inject('isChatOngoing');
-    const onLoad = inject('onLoad');
+    const tawkIsChatOngoing = inject('tawkIsChatOngoing');
+    const tawkOnLoad = inject('tawkOnLoad');
 
-    onLoad(() => {
-        if (isChatOngoing()) {
+    tawkOnLoad(() => {
+        if (tawkIsChatOngoing()) {
             // do something if there's ongoing chat
         }
     });
@@ -1162,11 +1160,11 @@ Returns a boolean value (true or false) indicating whether currently there is an
 `Options API`
 ```js
 export default {
-    inject : ['isChatOngoing', 'onLoad'],
+    inject : ['tawkIsChatOngoing', 'tawkOnLoad'],
 
     mounted() {
-        this.onLoad(() => {
-            if(this.isChatOngoing()) {
+        this.tawkOnLoad(() => {
+            if(this.tawkIsChatOngoing()) {
                 // do something if there's ongoing chat
             }
         });
@@ -1176,17 +1174,17 @@ export default {
 
 <br/>
 
-## isVisitorEngaged
+## tawkIsVisitorEngaged
 Returns a boolean value (true or false) indicating whether the visitor is currently chatting or has requested a chat.
 
 `Composition API`
 ```html
 <script setup>
-    const isVisitorEngaged = inject('isVisitorEngaged');
-    const onLoad = inject('onLoad');
+    const tawkIsVisitorEngaged = inject('tawkIsVisitorEngaged');
+    const tawkOnLoad = inject('tawkOnLoad');
 
-    onLoad(() => {
-        if (isVisitorEngaged()) {
+    tawkOnLoad(() => {
+        if (tawkIsVisitorEngaged()) {
             // do something if visitor engaged in chat
         }
     });
@@ -1196,11 +1194,11 @@ Returns a boolean value (true or false) indicating whether the visitor is curren
 `Options API`
 ```js
 export default {
-    inject : ['isVisitorEngaged', 'onLoad'],
+    inject : ['tawkIsVisitorEngaged', 'tawkOnLoad'],
 
     mounted() {
-        this.onLoad(() => {
-            if(this.isVisitorEngaged()) {
+        this.tawkOnLoad(() => {
+            if(this.tawkIsVisitorEngaged()) {
                 // do something if visitor engaged in chat
             }
         });
@@ -1210,15 +1208,15 @@ export default {
 
 <br/>
 
-## onLoaded
+## tawkOnLoaded
 Returns a boolean value (true or undefined) indicating when the plugin is ready.
 
 `Composition API`
 ```html
 <script setup>
-    const onLoaded = inject('onLoaded');
+    const tawkOnLoaded = inject('tawkOnLoaded');
 
-    if (onLoaded()) {
+    if (tawkOnLoaded()) {
         // do something when widget is loaded
     }
 </script>
@@ -1227,25 +1225,25 @@ Returns a boolean value (true or undefined) indicating when the plugin is ready.
 `Options API`
 ```js
 export default {
-    inject : ['onLoaded'],
+    inject : ['tawkOnLoaded'],
 
     mounted() {
-        if(this.onLoaded()) {
+        if(this.tawkOnLoaded()) {
             // do something when widget is loaded
         }
     }
 }
 ```
 
-## onBeforeLoaded
+## tawkOnBeforeLoaded
 Returns a boolean value (true or undefined) indicating when plugin is initialize.
 
 `Composition API`
 ```html
 <script setup>
-    const onBeforeLoaded = inject('onBeforeLoaded');
+    const tawkOnBeforeLoaded = inject('tawkOnBeforeLoaded');
 
-    if (onBeforeLoaded()) {
+    if (tawkOnBeforeLoaded()) {
         // do something before onload
     }
 </script>
@@ -1254,27 +1252,27 @@ Returns a boolean value (true or undefined) indicating when plugin is initialize
 `Options API`
 ```js
 export default {
-    inject : ['onBeforeLoaded'],
+    inject : ['tawkOnBeforeLoaded'],
 
     mounted() {
-        if(this.onBeforeLoaded()) {
+        if(this.tawkOnBeforeLoaded()) {
             // do something before onload
         }
     }
 }
 ```
 
-## widgetPosition
+## tawkWidgetPosition
 Returns a string for current position of the widget.
 
 `Composition API`
 ```html
 <script setup>
-    const widgetPosition = inject('widgetPosition');
-    const onLoad = inject('onLoad');
+    const tawkWidgetPosition = inject('tawkWidgetPosition');
+    const tawkOnLoad = inject('tawkOnLoad');
 
-    onLoad(() => {
-        if (widgetPosition() === 'br') {
+    tawkOnLoad(() => {
+        if (tawkWidgetPosition() === 'br') {
             // do something if the widget is at bottom right
         }
     });
@@ -1284,11 +1282,11 @@ Returns a string for current position of the widget.
 `Options API`
 ```js
 export default {
-    inject : ['widgetPosition', 'onLoad'],
+    inject : ['tawkWidgetPosition', 'tawkOnLoad'],
 
     mounted() {
-        this.onLoad(() => {
-            if(this.widgetPosition() === 'br') {
+        this.tawkOnLoad(() => {
+            if(this.tawkWidgetPosition() === 'br') {
                 // do something if the widget is at bottom right
             }
         });
@@ -1298,17 +1296,17 @@ export default {
 
 <br/>
 
-## endChat
+## tawkEndChat
 Ends the current ongoing chat.
 
 `Composition API`
 ```html
 <script setup>
-    const endChat = inject('endChat');
-    const onLoad = inject('onLoad');
+    const tawkEndChat = inject('tawkEndChat');
+    const tawkOnLoad = inject('tawkOnLoad');
 
-    onLoad(() => {
-        endChat();
+    tawkOnLoad(() => {
+        tawkEndChat();
     });
 </script>
 ```
@@ -1316,11 +1314,11 @@ Ends the current ongoing chat.
 `Options API`
 ```js
 export default {
-    inject : ['endChat', 'onLoad'],
+    inject : ['tawkEndChat', 'tawkOnLoad'],
 
     mounted() {
-        this.onLoad(() => {
-            this.endChat();
+        this.tawkOnLoad(() => {
+            this.tawkEndChat();
         });
     }
 }
@@ -1329,7 +1327,7 @@ export default {
 
 <br/>
 
-## setAttributes
+## tawkSetAttributes
 Set custom metadata regarding this chat/visitor.
 
 This function takes in two values: attribute and callback.
@@ -1359,11 +1357,11 @@ Error messages returned:
 `Composition API`
 ```html
 <script setup>
-    const setAttributes = inject('setAttributes');
-    const onLoad = inject('onLoad');
+    const tawkSetAttributes = inject('tawkSetAttributes');
+    const tawkOnLoad = inject('tawkOnLoad');
 
-    onLoad(() => {
-        setAttributes({
+    tawkOnLoad(() => {
+        tawkSetAttributes({
             id : 'A1234',
             store : 'Midvalley',
             hash : 'hash value' // Optional
@@ -1377,11 +1375,11 @@ Error messages returned:
 `Options API`
 ```js
 export default {
-    inject : ['setAttributes', 'onLoad'],
+    inject : ['tawkSetAttributes', 'tawkOnLoad'],
 
     mounted() {
-        this.onLoad(() => {
-            this.setAttributes({
+        this.tawkOnLoad(() => {
+            this.tawkSetAttributes({
                 id : 'A1234',
                 store : 'Midvalley',
                 hash : 'hash value' // Optional
@@ -1395,7 +1393,7 @@ export default {
 
 <br/>
 
-## addEvent
+## tawkAddEvent
 Set a custom event to chat.
 This function takes in 3 values: event name, optional metadata and callback.
 
@@ -1408,11 +1406,11 @@ INVALID_EVENT_NAME, INVALID_ATTRIBUTES, ATTRIBUTE_LIMIT_EXCEEDED, CONTAINS_INVAL
 `Composition API`
 ```html
 <script setup>
-    const addEvent = inject('addEvent');
-    const onLoad = inject('onLoad');
+    const tawkAddEvent = inject('tawkAddEvent');
+    const tawkOnLoad = inject('tawkOnLoad');
 
-    onLoad(() => {
-        addEvent(
+    tawkOnLoad(() => {
+        tawkAddEvent(
             'requested-quotation',
             {
                 skU : 'A0012',
@@ -1430,11 +1428,11 @@ INVALID_EVENT_NAME, INVALID_ATTRIBUTES, ATTRIBUTE_LIMIT_EXCEEDED, CONTAINS_INVAL
 `Options API`
 ```js
 export default {
-    inject : ['addEvent', 'onLoad'],
+    inject : ['tawkAddEvent', 'tawkOnLoad'],
 
     mounted() {
-        this.onLoad(() => {
-            this.addEvent(
+        this.tawkOnLoad(() => {
+            this.tawkAddEvent(
                 'requested-quotation',
                 {
                     skU : 'A0012',
@@ -1452,7 +1450,7 @@ export default {
 
 <br/>
 
-## addTags
+## tawkAddTags
 Add tags to the chat.
 This function takes in two values; tags and callback.
 This is of the array data type.
@@ -1466,11 +1464,11 @@ INVALID_TAGS, TAG_LIMIT_EXCEEDED, VERSION_CONFLICT, SESSION_EXPIRED, SERVER_ERRO
 `Composition API`
 ```html
 <script setup>
-    const addTags = inject('addTags');
-    const onLoad = inject('onLoad');
+    const tawkAddTags = inject('tawkAddTags');
+    const tawkOnLoad = inject('tawkOnLoad');
 
-    onLoad(() => {
-        addTags([
+    tawkOnLoad(() => {
+        tawkAddTags([
             'hello',
             'world'
         ], function(error) {
@@ -1483,11 +1481,11 @@ INVALID_TAGS, TAG_LIMIT_EXCEEDED, VERSION_CONFLICT, SESSION_EXPIRED, SERVER_ERRO
 `Options API`
 ```js
 export default {
-    inject : ['addTags', 'onLoad'],
+    inject : ['tawkAddTags', 'tawkOnLoad'],
 
     mounted() {
-        this.onLoad(() => {
-            this.addTags([
+        this.tawkOnLoad(() => {
+            this.tawkAddTags([
                 'hello',
                 'world'
             ], function(error) {
@@ -1500,7 +1498,7 @@ export default {
 
 <br/>
 
-## removeTags
+## tawkRemoveTags
 Remove tags from the chat.
 This function takes in two values: tags and callback.
 This is of the array data type.
@@ -1513,11 +1511,11 @@ INVALID_TAGS, TAG_LIMIT_EXCEEDED, SESSION_EXPIRED, SERVER_ERROR
 `Composition API`
 ```html
 <script setup>
-    const removeTags = inject('removeTags');
-    const onLoad = inject('onLoad');
+    const tawkRemoveTags = inject('tawkRemoveTags');
+    const tawkOnLoad = inject('tawkOnLoad');
 
-    onLoad(() => {
-        removeTags([
+    tawkOnLoad(() => {
+        tawkRemoveTags([
             'hello',
             'world'
         ], function(error) {
@@ -1530,11 +1528,11 @@ INVALID_TAGS, TAG_LIMIT_EXCEEDED, SESSION_EXPIRED, SERVER_ERROR
 `Options API`
 ```js
 export default {
-    inject : ['removeTags', 'onLoad'],
+    inject : ['tawkRemoveTags', 'tawkOnLoad'],
 
     mounted() {
-        this.onLoad(() => {
-            this.removeTags([
+        this.tawkOnLoad(() => {
+            this.tawkRemoveTags([
                 'hello',
                 'world'
             ], function(error) {
@@ -1559,9 +1557,9 @@ You can get your API key from **Admin>Property Settings**.
 `Composition API`
 ```html
 <script setup>
-    const visitor = inject('visitor');
+    const tawkVisitor = inject('tawkVisitor');
 
-    visitor({
+    tawkVisitor({
         name : 'Name',
         email : 'email@email.com',
         hash : '<calculate-hash>'
@@ -1572,10 +1570,10 @@ You can get your API key from **Admin>Property Settings**.
 `Options API`
 ```js
 export default {
-    inject : ['visitor'],
+    inject : ['tawkVisitor'],
 
     mounted() {
-        this.visitor({
+        this.tawkVisitor({
             name : 'Name',
             email : 'email@email.com',
             hash : '<calculate-hash>'
@@ -1665,16 +1663,16 @@ app.use(TawkMessengerVue, {
 
 <br/>
 
-## switchWidget
+## tawkSwitchWidget
 Disconnect the current widget connection, logout if it has existing user login and switch to
 another widget.
 
 `Composition API`
 ```html
 <script setup>
-    const switchWidget = inject('switchWidget');
+    const tawkSwitchWidget = inject('tawkSwitchWidget');
 
-    switchWidget({
+    tawkSwitchWidget({
         propertyId : 'your-property-id',
         widgetId : 'your-widget-id'
     }, function () {
@@ -1686,10 +1684,10 @@ another widget.
 `Options API`
 ```js
 export default {
-    inject : ['switchWidget'],
+    inject : ['tawkSwitchWidget'],
 
     mounted() {
-        this.switchWidget({
+        this.tawkSwitchWidget({
             propertyId : 'your-property-id',
             widgetId : 'your-widget-id'
         }, function() {

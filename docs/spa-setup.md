@@ -54,10 +54,10 @@ It must be exactly match the name used to listen to that event, you can see the 
 // Options API
 <script>
     export default {
-        inject : ['onLoad'],
+        inject : ['tawkOnLoad'],
 
         mounted() {
-            this.onLoad(() => {
+            this.tawkOnLoad(() => {
                 // place your function here
             });
         }
