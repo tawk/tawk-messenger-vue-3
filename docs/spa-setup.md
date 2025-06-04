@@ -11,9 +11,9 @@ To access the provided functions from the plugin, use the `inject()` function
 <script setup>
     import { inject } from 'vue';
 
-    const toggle = inject('toggle');
+    const tawkToggle = inject('tawkToggle');
 
-    toggle();
+    tawkToggle();
 </script>
 ```
 
@@ -21,10 +21,10 @@ To access the provided functions from the plugin, use the `inject()` function
 // Options API
 <script>
     export default {
-        inject : ['toggle'],
+        inject : ['tawkToggle'],
 
         mounted() {
-            this.toggle();
+            this.tawkToggle();
         }
     }
 </script>
@@ -42,9 +42,9 @@ It must be exactly match the name used to listen to that event, you can see the 
 <script setup>
     import { inject } from 'vue';
 
-    const onLoad = inject('onLoad');
+    const tawkOnLoad = inject('tawkOnLoad');
 
-    onLoad(() => {
+    tawkOnLoad(() => {
         // place your function here
     });
 </script>
