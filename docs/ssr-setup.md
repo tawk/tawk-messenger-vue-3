@@ -26,11 +26,11 @@ To access the API functions, call the **$tawkMessenger** anywhere in your compon
 `Options API`
 ```js
 export default {
-    inject ['onLoad', 'toggle'],
+    inject ['tawkOnLoad', 'tawkToggle'],
 
     mounted() {
-        this.onLoad(() => {
-            this.toggle();
+        this.tawkOnLoad(() => {
+            this.tawkToggle();
         });
     }
 };
@@ -45,10 +45,10 @@ to that event.
 `Options API`
 ```js
 export default {
-    inject ['onLoad', 'toggle'],
+    inject ['tawkOnLoad'],
 
     mounted() {
-        this.onLoad(() => {
+        this.tawkOnLoad(() => {
             // place your code here
         });
     }
