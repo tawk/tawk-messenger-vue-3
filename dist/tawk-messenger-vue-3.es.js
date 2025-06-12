@@ -69,188 +69,188 @@ class TawkMessenger {
     this.provideSetters();
   }
   provideActions() {
-    this.app.provide("start", () => {
+    this.app.provide("tawkStart", () => {
       window.Tawk_API.start();
     });
-    this.app.provide("shutdown", () => {
+    this.app.provide("tawkShutdown", () => {
       window.Tawk_API.shutdown();
     });
-    this.app.provide("maximize", () => {
+    this.app.provide("tawkMaximize", () => {
       window.Tawk_API.maximize();
     });
-    this.app.provide("minimize", () => {
+    this.app.provide("tawkMinimize", () => {
       window.Tawk_API.minimize();
     });
-    this.app.provide("toggle", () => {
+    this.app.provide("tawkToggle", () => {
       window.Tawk_API.toggle();
     });
-    this.app.provide("popup", () => {
+    this.app.provide("tawkPopup", () => {
       window.Tawk_API.popup();
     });
-    this.app.provide("showWidget", () => {
+    this.app.provide("tawkShowWidget", () => {
       window.Tawk_API.showWidget();
     });
-    this.app.provide("hideWidget", () => {
+    this.app.provide("tawkHideWidget", () => {
       window.Tawk_API.hideWidget();
     });
-    this.app.provide("toggleVisibility", () => {
+    this.app.provide("tawkToggleVisibility", () => {
       window.Tawk_API.toggleVisibility();
     });
-    this.app.provide("endChat", () => {
+    this.app.provide("tawkEndChat", () => {
       window.Tawk_API.endChat();
     });
   }
   provideGetters() {
-    this.app.provide("getWindowType", () => {
+    this.app.provide("tawkGetWindowType", () => {
       return window.Tawk_API.getWindowType();
     });
-    this.app.provide("getStatus", () => {
+    this.app.provide("tawkGetStatus", () => {
       return window.Tawk_API.getStatus();
     });
-    this.app.provide("isChatMaximized", () => {
+    this.app.provide("tawkIsChatMaximized", () => {
       return window.Tawk_API.isChatMaximized();
     });
-    this.app.provide("isChatMinimized", () => {
+    this.app.provide("tawkIsChatMinimized", () => {
       return window.Tawk_API.isChatMinimized();
     });
-    this.app.provide("isChatHidden", () => {
+    this.app.provide("tawkIsChatHidden", () => {
       return window.Tawk_API.isChatHidden();
     });
-    this.app.provide("isChatOngoing", () => {
+    this.app.provide("tawkIsChatOngoing", () => {
       return window.Tawk_API.isChatOngoing();
     });
-    this.app.provide("isVisitorEngaged", () => {
+    this.app.provide("tawkIsVisitorEngaged", () => {
       return window.Tawk_API.isVisitorEngaged();
     });
-    this.app.provide("onLoaded", () => {
+    this.app.provide("tawkOnLoaded", () => {
       return window.Tawk_API.onLoaded;
     });
-    this.app.provide("onBeforeLoaded", () => {
+    this.app.provide("tawkOnBeforeLoaded", () => {
       return window.Tawk_API.onBeforeLoaded;
     });
-    this.app.provide("widgetPosition", () => {
+    this.app.provide("tawkWidgetPosition", () => {
       return window.Tawk_API.widgetPosition();
     });
   }
   provideListeners() {
-    this.app.provide("onLoad", (callback) => {
+    this.app.provide("tawkOnLoad", (callback) => {
       window.addEventListener("tawkLoad", () => {
         callback();
       });
     });
-    this.app.provide("onStatusChange", (callback) => {
+    this.app.provide("tawkOnStatusChange", (callback) => {
       window.addEventListener("tawkStatusChange", (status) => {
         callback(status.detail);
       });
     });
-    this.app.provide("onBeforeLoad", (callback) => {
+    this.app.provide("tawkOnBeforeLoad", (callback) => {
       window.addEventListener("tawkBeforeLoad", () => {
         callback();
       });
     });
-    this.app.provide("onChatMaximized", (callback) => {
+    this.app.provide("tawkOnChatMaximized", (callback) => {
       window.addEventListener("tawkChatMaximized", () => {
         callback();
       });
     });
-    this.app.provide("onChatMinimized", (callback) => {
+    this.app.provide("tawkOnChatMinimized", (callback) => {
       window.addEventListener("tawkChatMinimized", () => {
         callback();
       });
     });
-    this.app.provide("onChatHidden", (callback) => {
+    this.app.provide("tawkOnChatHidden", (callback) => {
       window.addEventListener("tawkChatHidden", () => {
         callback();
       });
     });
-    this.app.provide("onChatStarted", (callback) => {
+    this.app.provide("tawkOnChatStarted", (callback) => {
       window.addEventListener("tawkChatStarted", () => {
         callback();
       });
     });
-    this.app.provide("onChatEnded", (callback) => {
+    this.app.provide("tawkOnChatEnded", (callback) => {
       window.addEventListener("tawkChatEnded", () => {
         callback();
       });
     });
-    this.app.provide("onPrechatSubmit", (callback) => {
+    this.app.provide("tawkOnPrechatSubmit", (callback) => {
       window.addEventListener("tawkPrechatSubmit", (data) => {
         callback(data.detail);
       });
     });
-    this.app.provide("onOfflineSubmit", (callback) => {
+    this.app.provide("tawkOnOfflineSubmit", (callback) => {
       window.addEventListener("tawkOfflineSubmit", (data) => {
         callback(data.detail);
       });
     });
-    this.app.provide("onChatMessageVisitor", (callback) => {
+    this.app.provide("tawkOnChatMessageVisitor", (callback) => {
       window.addEventListener("tawkChatMessageVisitor", (message) => {
         callback(message.detail);
       });
     });
-    this.app.provide("onChatMessageAgent", (callback) => {
+    this.app.provide("tawkOnChatMessageAgent", (callback) => {
       window.addEventListener("tawkChatMessageAgent", (message) => {
         callback(message.detail);
       });
     });
-    this.app.provide("onChatMessageSystem", (callback) => {
+    this.app.provide("tawkOnChatMessageSystem", (callback) => {
       window.addEventListener("tawkChatMessageSystem", (message) => {
         callback(message.detail);
       });
     });
-    this.app.provide("onAgentJoinChat", (callback) => {
+    this.app.provide("tawkOnAgentJoinChat", (callback) => {
       window.addEventListener("tawkAgentJoinChat", (data) => {
         callback(data.detail);
       });
     });
-    this.app.provide("onAgentLeaveChat", (callback) => {
+    this.app.provide("tawkOnAgentLeaveChat", (callback) => {
       window.addEventListener("tawkAgentLeaveChat", (data) => {
         callback(data.detail);
       });
     });
-    this.app.provide("onChatSatisfaction", (callback) => {
+    this.app.provide("tawkOnChatSatisfaction", (callback) => {
       window.addEventListener("tawkChatSatisfaction", (satisfaction) => {
         callback(satisfaction.detail);
       });
     });
-    this.app.provide("onVisitorNameChanged", (callback) => {
+    this.app.provide("tawkOnVisitorNameChanged", (callback) => {
       window.addEventListener("tawkVisitorNameChanged", (visitorName) => {
         callback(visitorName.detail);
       });
     });
-    this.app.provide("onFileUpload", (callback) => {
+    this.app.provide("tawkOnFileUpload", (callback) => {
       window.addEventListener("tawkFileUpload", (link) => {
         callback(link.detail);
       });
     });
-    this.app.provide("onTagsUpdated", (callback) => {
+    this.app.provide("tawkOnTagsUpdated", (callback) => {
       window.addEventListener("tawkTagsUpdated", (data) => {
         callback(data.detail);
       });
     });
-    this.app.provide("onUnreadCountChanged", (callback) => {
+    this.app.provide("tawkOnUnreadCountChanged", (callback) => {
       window.addEventListener("tawkUnreadCountChanged", (data) => {
         callback(data.detail);
       });
     });
   }
   provideSetters() {
-    this.app.provide("visitor", (data) => {
+    this.app.provide("tawkVisitor", (data) => {
       window.Tawk_API.visitor = data;
     });
-    this.app.provide("setAttributes", (attribute, callback) => {
+    this.app.provide("tawkSetAttributes", (attribute, callback) => {
       window.Tawk_API.setAttributes(attribute, callback);
     });
-    this.app.provide("addEvent", (event, metadata, callback) => {
+    this.app.provide("tawkAddEvent", (event, metadata, callback) => {
       window.Tawk_API.addEvent(event, metadata, callback);
     });
-    this.app.provide("addTags", (tags, callback) => {
+    this.app.provide("tawkAddTags", (tags, callback) => {
       window.Tawk_API.addTags(tags, callback);
     });
-    this.app.provide("removeTags", (tags, callback) => {
+    this.app.provide("tawkRemoveTags", (tags, callback) => {
       window.Tawk_API.removeTags(tags, callback);
     });
-    this.app.provide("switchWidget", (data, callback) => {
+    this.app.provide("tawkSwitchWidget", (data, callback) => {
       window.Tawk_API.switchWidget(data, callback);
     });
   }
