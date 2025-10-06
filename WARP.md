@@ -105,3 +105,26 @@ The plugin dynamically loads the Tawk.to script and provides a wrapper around th
 
 ### Browser Compatibility
 The plugin includes proper error handling for server-side environments (checks for `window` and `document` objects) and is compatible with both SPA and SSR Vue applications.
+
+## Security Features
+
+### Input Validation
+The plugin implements comprehensive input validation to prevent security vulnerabilities:
+
+- **Property/Widget ID Validation**: Only alphanumeric characters, hyphens, underscores, and dots are allowed
+- **Domain Validation**: Script loading is restricted to tawk.to domains only
+- **Length Limits**: ID parameters are limited to 100 characters to prevent abuse
+- **XSS Prevention**: All inputs are validated against script injection patterns
+
+### Secure Script Loading
+- **URL Encoding**: All parameters are properly encoded before URL construction
+- **CORS Security**: Uses `crossorigin="anonymous"` for stricter security policies
+- **Referrer Policy**: Implements `strict-origin-when-cross-origin` for better privacy
+- **Domain Restriction**: Only allows loading scripts from verified tawk.to domains
+
+### Security Testing
+Comprehensive security tests are included to validate:
+- Input validation functions (`tests/units/helper-security.spec.js`)
+- Widget loading security (`tests/units/widget-security.spec.js`)
+- XSS prevention measures
+- Domain confusion attack prevention
