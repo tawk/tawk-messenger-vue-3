@@ -1,4 +1,6 @@
+import type { App } from 'vue';
 import type {
+	TawkAPI,
 	TawkPluginOptions,
 	TawkCustomStyle,
 	TawkCallback,
@@ -12,7 +14,7 @@ import { loadScript } from '../utils/widget';
 import { isValidString } from '../utils/helper';
 
 class TawkMessenger {
-	app: {};
+	app: App;
 	propertyId: string;
 	widgetId: string;
 	embedId: string | undefined;
@@ -20,7 +22,7 @@ class TawkMessenger {
 	customStyle: TawkCustomStyle | undefined;
 	basePath: string | undefined;
 
-	constructor(app: {}, options: TawkPluginOptions) {
+	constructor(app: App, options: TawkPluginOptions) {
 		if (!isValidString(options.propertyId)) {
 			return;
 		}
@@ -48,7 +50,7 @@ class TawkMessenger {
 		/**
 		 * Set placeholder
 		 */
-		window.Tawk_API = window.Tawk_API || {};
+		window.Tawk_API = (window.Tawk_API || {}) as TawkAPI;
 		window.Tawk_LoadStart = new Date();
 
 		/**
