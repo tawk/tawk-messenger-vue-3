@@ -50,17 +50,18 @@
     "vue": "^3.5.28"
   },
   "devDependencies": {
-    "typescript": "^5.9.3",
-    "vue-tsc": "^3.2.4",
-    "@vue/tsconfig": "^0.8.1",
-    "vite": "^7.3.1",
-    "@vitejs/plugin-vue": "^6.0.4",
-    "@vue/test-utils": "^2.4.6",
-    "vitest": "^4.0.18",
-    "@vitest/coverage-v8": "^4.0.18",
-    "eslint": "^9.31.0",
+    "@typescript-eslint/eslint-plugin": "^8.56.0",
     "@typescript-eslint/parser": "^8.56.0",
-    "@typescript-eslint/eslint-plugin": "^8.56.0"
+    "@vitejs/plugin-vue": "^6.0.4",
+    "@vitest/coverage-v8": "^4.0.18",
+    "@vue/test-utils": "^2.4.6",
+    "@vue/tsconfig": "^0.8.1",
+    "eslint": "^9.31.0",
+    "jsdom": "^28.1.0",
+    "typescript": "^5.9.3",
+    "vite": "^7.3.1",
+    "vitest": "^4.0.18",
+    "vue-tsc": "^3.2.4"
   },
   "directories": {
     "doc": "docs",

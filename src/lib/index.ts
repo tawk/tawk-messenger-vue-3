@@ -210,7 +210,7 @@ class TawkMessenger {
 		});
 
 		this.app.provide('tawkOnChatHidden', (callback: TawkCallback) => {
-			window.addEventListener('tawkOnChatHidden', () => {
+			window.addEventListener('tawkChatHidden', () => {
 				callback();
 			});
 		});

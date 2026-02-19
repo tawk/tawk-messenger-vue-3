@@ -47,7 +47,7 @@ describe('Tawk-messenger features', () => {
 			expect(typeof provides.tawkWidgetPosition === 'function').toBe(true);
 		});
 
-		it('Should provide listeners functions', () => {
+		describe('Should provide listeners functions', () => {
 			it('Should add tawkLoad event listener', () => {
 				expect(typeof provides.tawkOnLoad === 'function').toBe(true);
 
@@ -147,9 +147,9 @@ describe('Tawk-messenger features', () => {
 			});
 
 			it('Should add tawkAgentLeaveChat event listener', () => {
-				expect(typeof provides.tawkOnAgentJoinChat === 'function').toBe(true);
+				expect(typeof provides.tawkOnAgentLeaveChat === 'function').toBe(true);
 
-				provides.tawkOnAgentJoinChat(() => {});
+				provides.tawkOnAgentLeaveChat(() => {});
 				expect(window.addEventListener).toHaveBeenCalledWith('tawkAgentLeaveChat', expect.any(Function));
 			});
 			
