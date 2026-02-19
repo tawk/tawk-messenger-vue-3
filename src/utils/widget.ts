@@ -1,14 +1,26 @@
-/* eslint-disable no-unused-vars */
+interface LoadScriptOptions {
+	propertyId?: string;
+	widgetId?: string;
+	embedId?: string;
+	basePath?: string;
+	autoStart?: boolean;
+}
 
-function loadScript({propertyId = '', widgetId = '', embedId = '', basePath = 'tawk.to', autoStart = true}) {
+function loadScript({
+	propertyId = '',
+	widgetId = '',
+	embedId = '',
+	basePath = 'tawk.to',
+	autoStart = true
+}: LoadScriptOptions): void {
 	if (embedId.length) {
 		/**
-		 * If the element with embedId as id we will create a new clement
+		 * If the element with embedId as id we will create a new element
 		 */
 		if (!document.getElementById(embedId)) {
 			const element = document.createElement('div');
 			element.id = embedId;
-	
+
 			document.body.appendChild(element);
 		}
 
@@ -31,4 +43,8 @@ function loadScript({propertyId = '', widgetId = '', embedId = '', basePath = 't
 
 export {
 	loadScript
+};
+
+export type {
+	LoadScriptOptions
 };
