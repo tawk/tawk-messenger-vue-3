@@ -1,271 +1,199 @@
-function loadScript({ propertyId = "", widgetId = "", embedId = "", basePath = "tawk.to", autoStart = true }) {
-  if (embedId.length) {
-    if (!document.getElementById(embedId)) {
-      const element = document.createElement("div");
-      element.id = embedId;
-      document.body.appendChild(element);
+function s({
+  propertyId: i = "",
+  widgetId: t = "",
+  embedId: e = "",
+  basePath: w = "tawk.to",
+  autoStart: n = !0
+}) {
+  if (e.length) {
+    if (!document.getElementById(e)) {
+      const r = document.createElement("div");
+      r.id = e, document.body.appendChild(r);
     }
-    window.Tawk_API.embedded = embedId;
+    window.Tawk_API.embedded = e;
   }
-  if (!autoStart) {
-    window.Tawk_API.autoStart = autoStart;
-  }
-  const script = document.createElement("script");
-  script.async = true;
-  script.src = `https://embed.${basePath}/${propertyId}/${widgetId}`;
-  script.charset = "UTF-8";
-  script.setAttribute("crossorigin", "*");
-  const firstScript = document.getElementsByTagName("script")[0];
-  firstScript.parentNode.insertBefore(script, firstScript);
+  n || (window.Tawk_API.autoStart = n);
+  const a = document.createElement("script");
+  a.async = !0, a.src = `https://embed.${w}/${i}/${t}`, a.charset = "UTF-8", a.setAttribute("crossorigin", "*");
+  const o = document.getElementsByTagName("script")[0];
+  o.parentNode.insertBefore(a, o);
 }
-function isValidString(value) {
-  if (!value || value.length === 0) {
-    return false;
-  }
-  return value !== null && value !== void 0 && typeof value === "string";
+function d(i) {
+  return !(!i || typeof i != "string" || i.length === 0);
 }
-class TawkMessenger {
-  constructor(app, options) {
-    if (!isValidString(options.propertyId)) {
-      return;
-    }
-    if (!isValidString(options.widgetId)) {
-      return;
-    }
-    this.app = app;
-    this.propertyId = options.propertyId;
-    this.widgetId = options.widgetId;
-    this.embedId = options.embedId;
-    this.autoStart = options.autoStart;
-    this.customStyle = options.customStyle;
-    this.basePath = options.basePath;
-    this.load();
+class p {
+  app;
+  propertyId;
+  widgetId;
+  embedId;
+  autoStart;
+  customStyle;
+  basePath;
+  constructor(t, e) {
+    d(e.propertyId) && d(e.widgetId) && (this.app = t, this.propertyId = e.propertyId, this.widgetId = e.widgetId, this.embedId = e.embedId, this.autoStart = e.autoStart, this.customStyle = e.customStyle, this.basePath = e.basePath, this.load());
   }
   load() {
-    if (!window || !document) {
-      return;
-    }
-    window.Tawk_API = window.Tawk_API || {};
-    window.Tawk_LoadStart = new Date();
-    loadScript({
+    !window || !document || (window.Tawk_API = window.Tawk_API || {}, window.Tawk_LoadStart = /* @__PURE__ */ new Date(), s({
       propertyId: this.propertyId,
       widgetId: this.widgetId,
       embedId: this.embedId,
       basePath: this.basePath,
       autoStart: this.autoStart
-    });
-    this.init();
+    }), this.init());
   }
   init() {
-    if (this.customStyle && typeof this.customStyle === "object") {
-      window.Tawk_API.customStyle = this.customStyle;
-    }
-    if (typeof this.app !== "object") {
-      return;
-    }
-    this.provideActions();
-    this.provideGetters();
-    this.provideListeners();
-    this.provideSetters();
+    this.customStyle && typeof this.customStyle == "object" && (window.Tawk_API.customStyle = this.customStyle), typeof this.app == "object" && (this.provideActions(), this.provideGetters(), this.provideListeners(), this.provideSetters());
   }
+  /**
+   * API for calling an action on the widget
+   */
   provideActions() {
     this.app.provide("tawkStart", () => {
       window.Tawk_API.start();
-    });
-    this.app.provide("tawkShutdown", () => {
+    }), this.app.provide("tawkShutdown", () => {
       window.Tawk_API.shutdown();
-    });
-    this.app.provide("tawkMaximize", () => {
+    }), this.app.provide("tawkMaximize", () => {
       window.Tawk_API.maximize();
-    });
-    this.app.provide("tawkMinimize", () => {
+    }), this.app.provide("tawkMinimize", () => {
       window.Tawk_API.minimize();
-    });
-    this.app.provide("tawkToggle", () => {
+    }), this.app.provide("tawkToggle", () => {
       window.Tawk_API.toggle();
-    });
-    this.app.provide("tawkPopup", () => {
+    }), this.app.provide("tawkPopup", () => {
       window.Tawk_API.popup();
-    });
-    this.app.provide("tawkShowWidget", () => {
+    }), this.app.provide("tawkShowWidget", () => {
       window.Tawk_API.showWidget();
-    });
-    this.app.provide("tawkHideWidget", () => {
+    }), this.app.provide("tawkHideWidget", () => {
       window.Tawk_API.hideWidget();
-    });
-    this.app.provide("tawkToggleVisibility", () => {
+    }), this.app.provide("tawkToggleVisibility", () => {
       window.Tawk_API.toggleVisibility();
-    });
-    this.app.provide("tawkEndChat", () => {
+    }), this.app.provide("tawkEndChat", () => {
       window.Tawk_API.endChat();
     });
   }
+  /**
+   * API for returning a data
+   */
   provideGetters() {
-    this.app.provide("tawkGetWindowType", () => {
-      return window.Tawk_API.getWindowType();
-    });
-    this.app.provide("tawkGetStatus", () => {
-      return window.Tawk_API.getStatus();
-    });
-    this.app.provide("tawkIsChatMaximized", () => {
-      return window.Tawk_API.isChatMaximized();
-    });
-    this.app.provide("tawkIsChatMinimized", () => {
-      return window.Tawk_API.isChatMinimized();
-    });
-    this.app.provide("tawkIsChatHidden", () => {
-      return window.Tawk_API.isChatHidden();
-    });
-    this.app.provide("tawkIsChatOngoing", () => {
-      return window.Tawk_API.isChatOngoing();
-    });
-    this.app.provide("tawkIsVisitorEngaged", () => {
-      return window.Tawk_API.isVisitorEngaged();
-    });
-    this.app.provide("tawkOnLoaded", () => {
-      return window.Tawk_API.onLoaded;
-    });
-    this.app.provide("tawkOnBeforeLoaded", () => {
-      return window.Tawk_API.onBeforeLoaded;
-    });
-    this.app.provide("tawkWidgetPosition", () => {
-      return window.Tawk_API.widgetPosition();
-    });
+    this.app.provide("tawkGetWindowType", () => window.Tawk_API.getWindowType()), this.app.provide("tawkGetStatus", () => window.Tawk_API.getStatus()), this.app.provide("tawkIsChatMaximized", () => window.Tawk_API.isChatMaximized()), this.app.provide("tawkIsChatMinimized", () => window.Tawk_API.isChatMinimized()), this.app.provide("tawkIsChatHidden", () => window.Tawk_API.isChatHidden()), this.app.provide("tawkIsChatOngoing", () => window.Tawk_API.isChatOngoing()), this.app.provide("tawkIsVisitorEngaged", () => window.Tawk_API.isVisitorEngaged()), this.app.provide("tawkOnLoaded", () => window.Tawk_API.onLoaded), this.app.provide("tawkOnBeforeLoaded", () => window.Tawk_API.onBeforeLoaded), this.app.provide("tawkWidgetPosition", () => window.Tawk_API.widgetPosition());
   }
+  /**
+   * API for listening to events emitted inside the widget
+   */
   provideListeners() {
-    this.app.provide("tawkOnLoad", (callback) => {
+    this.app.provide("tawkOnLoad", (t) => {
       window.addEventListener("tawkLoad", () => {
-        callback();
+        t();
       });
-    });
-    this.app.provide("tawkOnStatusChange", (callback) => {
-      window.addEventListener("tawkStatusChange", (status) => {
-        callback(status.detail);
+    }), this.app.provide("tawkOnStatusChange", (t) => {
+      window.addEventListener("tawkStatusChange", (e) => {
+        t(e.detail);
       });
-    });
-    this.app.provide("tawkOnBeforeLoad", (callback) => {
+    }), this.app.provide("tawkOnBeforeLoad", (t) => {
       window.addEventListener("tawkBeforeLoad", () => {
-        callback();
+        t();
       });
-    });
-    this.app.provide("tawkOnChatMaximized", (callback) => {
+    }), this.app.provide("tawkOnChatMaximized", (t) => {
       window.addEventListener("tawkChatMaximized", () => {
-        callback();
+        t();
       });
-    });
-    this.app.provide("tawkOnChatMinimized", (callback) => {
+    }), this.app.provide("tawkOnChatMinimized", (t) => {
       window.addEventListener("tawkChatMinimized", () => {
-        callback();
+        t();
       });
-    });
-    this.app.provide("tawkOnChatHidden", (callback) => {
+    }), this.app.provide("tawkOnChatHidden", (t) => {
       window.addEventListener("tawkChatHidden", () => {
-        callback();
+        t();
       });
-    });
-    this.app.provide("tawkOnChatStarted", (callback) => {
+    }), this.app.provide("tawkOnChatStarted", (t) => {
       window.addEventListener("tawkChatStarted", () => {
-        callback();
+        t();
       });
-    });
-    this.app.provide("tawkOnChatEnded", (callback) => {
+    }), this.app.provide("tawkOnChatEnded", (t) => {
       window.addEventListener("tawkChatEnded", () => {
-        callback();
+        t();
       });
-    });
-    this.app.provide("tawkOnPrechatSubmit", (callback) => {
-      window.addEventListener("tawkPrechatSubmit", (data) => {
-        callback(data.detail);
+    }), this.app.provide("tawkOnPrechatSubmit", (t) => {
+      window.addEventListener("tawkPrechatSubmit", (e) => {
+        t(e.detail);
       });
-    });
-    this.app.provide("tawkOnOfflineSubmit", (callback) => {
-      window.addEventListener("tawkOfflineSubmit", (data) => {
-        callback(data.detail);
+    }), this.app.provide("tawkOnOfflineSubmit", (t) => {
+      window.addEventListener("tawkOfflineSubmit", (e) => {
+        t(e.detail);
       });
-    });
-    this.app.provide("tawkOnChatMessageVisitor", (callback) => {
-      window.addEventListener("tawkChatMessageVisitor", (message) => {
-        callback(message.detail);
+    }), this.app.provide("tawkOnChatMessageVisitor", (t) => {
+      window.addEventListener("tawkChatMessageVisitor", (e) => {
+        t(e.detail);
       });
-    });
-    this.app.provide("tawkOnChatMessageAgent", (callback) => {
-      window.addEventListener("tawkChatMessageAgent", (message) => {
-        callback(message.detail);
+    }), this.app.provide("tawkOnChatMessageAgent", (t) => {
+      window.addEventListener("tawkChatMessageAgent", (e) => {
+        t(e.detail);
       });
-    });
-    this.app.provide("tawkOnChatMessageSystem", (callback) => {
-      window.addEventListener("tawkChatMessageSystem", (message) => {
-        callback(message.detail);
+    }), this.app.provide("tawkOnChatMessageSystem", (t) => {
+      window.addEventListener("tawkChatMessageSystem", (e) => {
+        t(e.detail);
       });
-    });
-    this.app.provide("tawkOnAgentJoinChat", (callback) => {
-      window.addEventListener("tawkAgentJoinChat", (data) => {
-        callback(data.detail);
+    }), this.app.provide("tawkOnAgentJoinChat", (t) => {
+      window.addEventListener("tawkAgentJoinChat", (e) => {
+        t(e.detail);
       });
-    });
-    this.app.provide("tawkOnAgentLeaveChat", (callback) => {
-      window.addEventListener("tawkAgentLeaveChat", (data) => {
-        callback(data.detail);
+    }), this.app.provide("tawkOnAgentLeaveChat", (t) => {
+      window.addEventListener("tawkAgentLeaveChat", (e) => {
+        t(e.detail);
       });
-    });
-    this.app.provide("tawkOnChatSatisfaction", (callback) => {
-      window.addEventListener("tawkChatSatisfaction", (satisfaction) => {
-        callback(satisfaction.detail);
+    }), this.app.provide("tawkOnChatSatisfaction", (t) => {
+      window.addEventListener("tawkChatSatisfaction", (e) => {
+        t(e.detail);
       });
-    });
-    this.app.provide("tawkOnVisitorNameChanged", (callback) => {
-      window.addEventListener("tawkVisitorNameChanged", (visitorName) => {
-        callback(visitorName.detail);
+    }), this.app.provide("tawkOnVisitorNameChanged", (t) => {
+      window.addEventListener("tawkVisitorNameChanged", (e) => {
+        t(e.detail);
       });
-    });
-    this.app.provide("tawkOnFileUpload", (callback) => {
-      window.addEventListener("tawkFileUpload", (link) => {
-        callback(link.detail);
+    }), this.app.provide("tawkOnFileUpload", (t) => {
+      window.addEventListener("tawkFileUpload", (e) => {
+        t(e.detail);
       });
-    });
-    this.app.provide("tawkOnTagsUpdated", (callback) => {
-      window.addEventListener("tawkTagsUpdated", (data) => {
-        callback(data.detail);
+    }), this.app.provide("tawkOnTagsUpdated", (t) => {
+      window.addEventListener("tawkTagsUpdated", (e) => {
+        t(e.detail);
       });
-    });
-    this.app.provide("tawkOnUnreadCountChanged", (callback) => {
-      window.addEventListener("tawkUnreadCountChanged", (data) => {
-        callback(data.detail);
+    }), this.app.provide("tawkOnUnreadCountChanged", (t) => {
+      window.addEventListener("tawkUnreadCountChanged", (e) => {
+        t(e.detail);
       });
     });
   }
+  /**
+   * API for setting data on the widget
+   */
   provideSetters() {
-    this.app.provide("tawkVisitor", (data) => {
-      window.Tawk_API.visitor = data;
-    });
-    this.app.provide("tawkSetAttributes", (attribute, callback) => {
-      window.Tawk_API.setAttributes(attribute, callback);
-    });
-    this.app.provide("tawkAddEvent", (event, metadata, callback) => {
-      window.Tawk_API.addEvent(event, metadata, callback);
-    });
-    this.app.provide("tawkAddTags", (tags, callback) => {
-      window.Tawk_API.addTags(tags, callback);
-    });
-    this.app.provide("tawkRemoveTags", (tags, callback) => {
-      window.Tawk_API.removeTags(tags, callback);
-    });
-    this.app.provide("tawkSwitchWidget", (data, callback) => {
-      window.Tawk_API.switchWidget(data, callback);
+    this.app.provide("tawkVisitor", (t) => {
+      window.Tawk_API.visitor = t;
+    }), this.app.provide("tawkSetAttributes", (t, e) => {
+      window.Tawk_API.setAttributes(t, e);
+    }), this.app.provide("tawkAddEvent", (t, e, w) => {
+      window.Tawk_API.addEvent(t, e, w);
+    }), this.app.provide("tawkAddTags", (t, e) => {
+      window.Tawk_API.addTags(t, e);
+    }), this.app.provide("tawkRemoveTags", (t, e) => {
+      window.Tawk_API.removeTags(t, e);
+    }), this.app.provide("tawkSwitchWidget", (t, e) => {
+      window.Tawk_API.switchWidget(t, e);
     });
   }
 }
-var index = {
-  install: (app, options = {}) => {
-    if (!isValidString(options.propertyId)) {
+const h = {
+  install(i, t = {}) {
+    if (!d(t.propertyId)) {
       console.error("[Tawk-messenger-vue warn]: You didn't specified 'propertyId' property in the plugin.");
       return;
     }
-    if (!isValidString(options.widgetId)) {
+    if (!d(t.widgetId)) {
       console.error("[Tawk-messenger-vue warn]: You didn't specified 'widgetId' property in the plugin.");
       return;
     }
-    new TawkMessenger(app, options);
+    new p(i, t);
   }
 };
-export { index as default };
+export {
+  h as default
+};
